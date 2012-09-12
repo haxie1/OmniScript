@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'OmnisCript-Mac' target in the 'OmnisCript-Mac' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'OmniScript-iOS' target in the 'OmniScript-iOS' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif

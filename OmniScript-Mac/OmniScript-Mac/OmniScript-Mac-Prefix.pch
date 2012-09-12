@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'OmniScript-Mac' target in the 'OmniScript-Mac' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
