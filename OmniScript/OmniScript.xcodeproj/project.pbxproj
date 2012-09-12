@@ -1,0 +1,1098 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		42A70CAB15FFAFC600B8D79B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CAA15FFAFC600B8D79B /* Foundation.framework */; };
+		42A70CBA15FFAFC600B8D79B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */; };
+		42A70CBC15FFAFC600B8D79B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CBB15FFAFC600B8D79B /* UIKit.framework */; };
+		42A70CBD15FFAFC600B8D79B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CAA15FFAFC600B8D79B /* Foundation.framework */; };
+		42A70CC015FFAFC600B8D79B /* libOmniScript-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CA715FFAFC600B8D79B /* libOmniScript-iOS.a */; };
+		42A70CC615FFAFC600B8D79B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A70CC415FFAFC600B8D79B /* InfoPlist.strings */; };
+		42A70CD915FFAFF200B8D79B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CD815FFAFF200B8D79B /* Cocoa.framework */; };
+		42A70CE315FFAFF200B8D79B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A70CE115FFAFF200B8D79B /* InfoPlist.strings */; };
+		42A70CEB15FFAFF300B8D79B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */; };
+		42A70CEC15FFAFF300B8D79B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CD815FFAFF200B8D79B /* Cocoa.framework */; };
+		42A70CEF15FFAFF300B8D79B /* OmniScript-Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CD715FFAFF200B8D79B /* OmniScript-Mac.framework */; };
+		42A70CF515FFAFF300B8D79B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A70CF315FFAFF300B8D79B /* InfoPlist.strings */; };
+		42A70D0515FFAFFD00B8D79B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CD815FFAFF200B8D79B /* Cocoa.framework */; };
+		42A70D0B15FFAFFD00B8D79B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A70D0915FFAFFD00B8D79B /* InfoPlist.strings */; };
+		42A70D1315FFAFFE00B8D79B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */; };
+		42A70D1415FFAFFE00B8D79B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CD815FFAFF200B8D79B /* Cocoa.framework */; };
+		42A70D1715FFAFFE00B8D79B /* OmniScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70D0415FFAFFD00B8D79B /* OmniScript.framework */; };
+		42A70D1D15FFAFFE00B8D79B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A70D1B15FFAFFE00B8D79B /* InfoPlist.strings */; };
+		42A70D3115FFB09800B8D79B /* OSMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D2F15FFB09800B8D79B /* OSMessenger.m */; };
+		42A70D3215FFB09800B8D79B /* OSMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D2F15FFB09800B8D79B /* OSMessenger.m */; };
+		42A70D3315FFB09800B8D79B /* OSMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D2F15FFB09800B8D79B /* OSMessenger.m */; };
+		42A70D3415FFB09800B8D79B /* OSMessenger.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A70D3015FFB09800B8D79B /* OSMessenger.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42A70D3515FFB09800B8D79B /* OSMessenger.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A70D3015FFB09800B8D79B /* OSMessenger.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42A70D3E15FFBA7000B8D79B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70D3D15FFBA7000B8D79B /* CFNetwork.framework */; };
+		42A70D4315FFC7A800B8D79B /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70D4215FFC7A800B8D79B /* libKiwi.a */; };
+		42A70D4515FFC7B200B8D79B /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70D4415FFC7B200B8D79B /* libKiwi-OSX.a */; };
+		42A70D4715FFC7C000B8D79B /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70D4615FFC7C000B8D79B /* libKiwi-OSX.a */; };
+		42A70D5415FFC97500B8D79B /* OSMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5315FFC97500B8D79B /* OSMessageSpec.m */; };
+		42A70D5515FFC97500B8D79B /* OSMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5315FFC97500B8D79B /* OSMessageSpec.m */; };
+		42A70D5615FFC97500B8D79B /* OSMessageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5315FFC97500B8D79B /* OSMessageSpec.m */; };
+		42A70D5915FFC9E500B8D79B /* OSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A70D5715FFC9E500B8D79B /* OSMessage.h */; };
+		42A70D5A15FFC9E500B8D79B /* OSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A70D5715FFC9E500B8D79B /* OSMessage.h */; };
+		42A70D5B15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
+		42A70D5C15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
+		42A70D5D15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42A70CBE15FFAFC600B8D79B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42A70C9E15FFAFC600B8D79B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A70CA615FFAFC600B8D79B;
+			remoteInfo = "OmniScript-iOS";
+		};
+		42A70CED15FFAFF300B8D79B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42A70C9E15FFAFC600B8D79B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A70CD615FFAFF200B8D79B;
+			remoteInfo = "OmniScript-Mac";
+		};
+		42A70D1515FFAFFE00B8D79B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42A70C9E15FFAFC600B8D79B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A70D0315FFAFFD00B8D79B;
+			remoteInfo = OmniScript;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		42A70CA515FFAFC600B8D79B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		42A70CA715FFAFC600B8D79B /* libOmniScript-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libOmniScript-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70CAA15FFAFC600B8D79B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		42A70CAE15FFAFC600B8D79B /* OmniScript-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OmniScript-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		42A70CB815FFAFC600B8D79B /* OmniScript-iOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OmniScript-iOSTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		42A70CBB15FFAFC600B8D79B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		42A70CC315FFAFC600B8D79B /* OmniScript-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OmniScript-iOSTests-Info.plist"; sourceTree = "<group>"; };
+		42A70CC515FFAFC600B8D79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42A70CD715FFAFF200B8D79B /* OmniScript-Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "OmniScript-Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70CD815FFAFF200B8D79B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		42A70CDB15FFAFF200B8D79B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		42A70CDC15FFAFF200B8D79B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		42A70CDD15FFAFF200B8D79B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		42A70CE015FFAFF200B8D79B /* OmniScript-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OmniScript-Mac-Info.plist"; sourceTree = "<group>"; };
+		42A70CE215FFAFF200B8D79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42A70CE415FFAFF200B8D79B /* OmniScript-Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OmniScript-Mac-Prefix.pch"; sourceTree = "<group>"; };
+		42A70CEA15FFAFF200B8D79B /* OmniScript-MacTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OmniScript-MacTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70CF215FFAFF300B8D79B /* OmniScript-MacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OmniScript-MacTests-Info.plist"; sourceTree = "<group>"; };
+		42A70CF415FFAFF300B8D79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42A70D0415FFAFFD00B8D79B /* OmniScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmniScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70D0815FFAFFD00B8D79B /* OmniScript-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OmniScript-Info.plist"; sourceTree = "<group>"; };
+		42A70D0A15FFAFFD00B8D79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42A70D0C15FFAFFD00B8D79B /* OmniScript-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OmniScript-Prefix.pch"; sourceTree = "<group>"; };
+		42A70D1215FFAFFE00B8D79B /* OmniScriptTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmniScriptTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A70D1A15FFAFFE00B8D79B /* OmniScriptTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OmniScriptTests-Info.plist"; sourceTree = "<group>"; };
+		42A70D1C15FFAFFE00B8D79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42A70D2F15FFB09800B8D79B /* OSMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessenger.m; path = Common/OSMessenger.m; sourceTree = "<group>"; };
+		42A70D3015FFB09800B8D79B /* OSMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessenger.h; path = Common/OSMessenger.h; sourceTree = "<group>"; };
+		42A70D3D15FFBA7000B8D79B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		42A70D4215FFC7A800B8D79B /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "/Users/Shared/kilodelta/Products/Release-iphoneos/libKiwi.a"; sourceTree = "<absolute>"; };
+		42A70D4415FFC7B200B8D79B /* libKiwi-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libKiwi-OSX.a"; path = "/Users/Shared/kilodelta/Products/Release/libKiwi-OSX.a"; sourceTree = "<absolute>"; };
+		42A70D4615FFC7C000B8D79B /* libKiwi-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libKiwi-OSX.a"; path = "/Users/Shared/kilodelta/Products/Release/libKiwi-OSX.a"; sourceTree = "<absolute>"; };
+		42A70D5315FFC97500B8D79B /* OSMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessageSpec.m; path = "Shared Tests/OSMessageSpec.m"; sourceTree = "<group>"; };
+		42A70D5715FFC9E500B8D79B /* OSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessage.h; path = Common/OSMessage.h; sourceTree = "<group>"; };
+		42A70D5815FFC9E500B8D79B /* OSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessage.m; path = Common/OSMessage.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42A70CA415FFAFC600B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3E15FFBA7000B8D79B /* CFNetwork.framework in Frameworks */,
+				42A70CAB15FFAFC600B8D79B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CB415FFAFC600B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D4315FFC7A800B8D79B /* libKiwi.a in Frameworks */,
+				42A70CBA15FFAFC600B8D79B /* SenTestingKit.framework in Frameworks */,
+				42A70CBC15FFAFC600B8D79B /* UIKit.framework in Frameworks */,
+				42A70CBD15FFAFC600B8D79B /* Foundation.framework in Frameworks */,
+				42A70CC015FFAFC600B8D79B /* libOmniScript-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CD315FFAFF200B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70CD915FFAFF200B8D79B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CE615FFAFF200B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D4515FFC7B200B8D79B /* libKiwi-OSX.a in Frameworks */,
+				42A70CEB15FFAFF300B8D79B /* SenTestingKit.framework in Frameworks */,
+				42A70CEC15FFAFF300B8D79B /* Cocoa.framework in Frameworks */,
+				42A70CEF15FFAFF300B8D79B /* OmniScript-Mac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0015FFAFFD00B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D0515FFAFFD00B8D79B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0E15FFAFFE00B8D79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D4715FFC7C000B8D79B /* libKiwi-OSX.a in Frameworks */,
+				42A70D1315FFAFFE00B8D79B /* SenTestingKit.framework in Frameworks */,
+				42A70D1415FFAFFE00B8D79B /* Cocoa.framework in Frameworks */,
+				42A70D1715FFAFFE00B8D79B /* OmniScript.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42A70C9C15FFAFC600B8D79B = {
+			isa = PBXGroup;
+			children = (
+				42A70D5E15FFCA1B00B8D79B /* Shared Tests */,
+				42A70D2715FFB04B00B8D79B /* Common */,
+				42A70CAC15FFAFC600B8D79B /* OmniScript-iOS */,
+				42A70CC115FFAFC600B8D79B /* OmniScript-iOSTests */,
+				42A70CDE15FFAFF200B8D79B /* OmniScript-Mac */,
+				42A70CF015FFAFF300B8D79B /* OmniScript-MacTests */,
+				42A70D0615FFAFFD00B8D79B /* OmniScript */,
+				42A70D1815FFAFFE00B8D79B /* OmniScriptTests */,
+				42A70CA915FFAFC600B8D79B /* Frameworks */,
+				42A70CA815FFAFC600B8D79B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		42A70CA815FFAFC600B8D79B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CA715FFAFC600B8D79B /* libOmniScript-iOS.a */,
+				42A70CB815FFAFC600B8D79B /* OmniScript-iOSTests.octest */,
+				42A70CD715FFAFF200B8D79B /* OmniScript-Mac.framework */,
+				42A70CEA15FFAFF200B8D79B /* OmniScript-MacTests.octest */,
+				42A70D0415FFAFFD00B8D79B /* OmniScript.framework */,
+				42A70D1215FFAFFE00B8D79B /* OmniScriptTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42A70CA915FFAFC600B8D79B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D4615FFC7C000B8D79B /* libKiwi-OSX.a */,
+				42A70D4415FFC7B200B8D79B /* libKiwi-OSX.a */,
+				42A70D4215FFC7A800B8D79B /* libKiwi.a */,
+				42A70D3D15FFBA7000B8D79B /* CFNetwork.framework */,
+				42A70CAA15FFAFC600B8D79B /* Foundation.framework */,
+				42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */,
+				42A70CBB15FFAFC600B8D79B /* UIKit.framework */,
+				42A70CD815FFAFF200B8D79B /* Cocoa.framework */,
+				42A70CDA15FFAFF200B8D79B /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42A70CAC15FFAFC600B8D79B /* OmniScript-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CAD15FFAFC600B8D79B /* Supporting Files */,
+			);
+			path = "OmniScript-iOS";
+			sourceTree = "<group>";
+		};
+		42A70CAD15FFAFC600B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CAE15FFAFC600B8D79B /* OmniScript-iOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70CC115FFAFC600B8D79B /* OmniScript-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CC215FFAFC600B8D79B /* Supporting Files */,
+			);
+			path = "OmniScript-iOSTests";
+			sourceTree = "<group>";
+		};
+		42A70CC215FFAFC600B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CC315FFAFC600B8D79B /* OmniScript-iOSTests-Info.plist */,
+				42A70CC415FFAFC600B8D79B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70CDA15FFAFF200B8D79B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CDB15FFAFF200B8D79B /* AppKit.framework */,
+				42A70CDC15FFAFF200B8D79B /* CoreData.framework */,
+				42A70CDD15FFAFF200B8D79B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		42A70CDE15FFAFF200B8D79B /* OmniScript-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CDF15FFAFF200B8D79B /* Supporting Files */,
+			);
+			path = "OmniScript-Mac";
+			sourceTree = "<group>";
+		};
+		42A70CDF15FFAFF200B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CE015FFAFF200B8D79B /* OmniScript-Mac-Info.plist */,
+				42A70CE115FFAFF200B8D79B /* InfoPlist.strings */,
+				42A70CE415FFAFF200B8D79B /* OmniScript-Mac-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70CF015FFAFF300B8D79B /* OmniScript-MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CF115FFAFF300B8D79B /* Supporting Files */,
+			);
+			path = "OmniScript-MacTests";
+			sourceTree = "<group>";
+		};
+		42A70CF115FFAFF300B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70CF215FFAFF300B8D79B /* OmniScript-MacTests-Info.plist */,
+				42A70CF315FFAFF300B8D79B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70D0615FFAFFD00B8D79B /* OmniScript */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D0715FFAFFD00B8D79B /* Supporting Files */,
+			);
+			path = OmniScript;
+			sourceTree = "<group>";
+		};
+		42A70D0715FFAFFD00B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D0815FFAFFD00B8D79B /* OmniScript-Info.plist */,
+				42A70D0915FFAFFD00B8D79B /* InfoPlist.strings */,
+				42A70D0C15FFAFFD00B8D79B /* OmniScript-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70D1815FFAFFE00B8D79B /* OmniScriptTests */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D1915FFAFFE00B8D79B /* Supporting Files */,
+			);
+			path = OmniScriptTests;
+			sourceTree = "<group>";
+		};
+		42A70D1915FFAFFE00B8D79B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D1A15FFAFFE00B8D79B /* OmniScriptTests-Info.plist */,
+				42A70D1B15FFAFFE00B8D79B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A70D2715FFB04B00B8D79B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D4A15FFC8C800B8D79B /* Model */,
+				42A70D4815FFC89200B8D79B /* NetworkSupport */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		42A70D4815FFC89200B8D79B /* NetworkSupport */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D2F15FFB09800B8D79B /* OSMessenger.m */,
+				42A70D3015FFB09800B8D79B /* OSMessenger.h */,
+			);
+			name = NetworkSupport;
+			sourceTree = "<group>";
+		};
+		42A70D4A15FFC8C800B8D79B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D5715FFC9E500B8D79B /* OSMessage.h */,
+				42A70D5815FFC9E500B8D79B /* OSMessage.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		42A70D5E15FFCA1B00B8D79B /* Shared Tests */ = {
+			isa = PBXGroup;
+			children = (
+				42A70D5315FFC97500B8D79B /* OSMessageSpec.m */,
+			);
+			name = "Shared Tests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		42A70CD415FFAFF200B8D79B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3415FFB09800B8D79B /* OSMessenger.h in Headers */,
+				42A70D5915FFC9E500B8D79B /* OSMessage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0115FFAFFD00B8D79B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3515FFB09800B8D79B /* OSMessenger.h in Headers */,
+				42A70D5A15FFC9E500B8D79B /* OSMessage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		42A70CA615FFAFC600B8D79B /* OmniScript-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70CCC15FFAFC600B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-iOS" */;
+			buildPhases = (
+				42A70CA315FFAFC600B8D79B /* Sources */,
+				42A70CA415FFAFC600B8D79B /* Frameworks */,
+				42A70CA515FFAFC600B8D79B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OmniScript-iOS";
+			productName = "OmniScript-iOS";
+			productReference = 42A70CA715FFAFC600B8D79B /* libOmniScript-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		42A70CB715FFAFC600B8D79B /* OmniScript-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70CCF15FFAFC600B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-iOSTests" */;
+			buildPhases = (
+				42A70CB315FFAFC600B8D79B /* Sources */,
+				42A70CB415FFAFC600B8D79B /* Frameworks */,
+				42A70CB515FFAFC600B8D79B /* Resources */,
+				42A70CB615FFAFC600B8D79B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42A70CBF15FFAFC600B8D79B /* PBXTargetDependency */,
+			);
+			name = "OmniScript-iOSTests";
+			productName = "OmniScript-iOSTests";
+			productReference = 42A70CB815FFAFC600B8D79B /* OmniScript-iOSTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		42A70CD615FFAFF200B8D79B /* OmniScript-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70CF915FFAFF300B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-Mac" */;
+			buildPhases = (
+				42A70CD215FFAFF200B8D79B /* Sources */,
+				42A70CD315FFAFF200B8D79B /* Frameworks */,
+				42A70CD415FFAFF200B8D79B /* Headers */,
+				42A70CD515FFAFF200B8D79B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OmniScript-Mac";
+			productName = "OmniScript-Mac";
+			productReference = 42A70CD715FFAFF200B8D79B /* OmniScript-Mac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42A70CE915FFAFF200B8D79B /* OmniScript-MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70CFC15FFAFF300B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-MacTests" */;
+			buildPhases = (
+				42A70CE515FFAFF200B8D79B /* Sources */,
+				42A70CE615FFAFF200B8D79B /* Frameworks */,
+				42A70CE715FFAFF200B8D79B /* Resources */,
+				42A70CE815FFAFF200B8D79B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42A70CEE15FFAFF300B8D79B /* PBXTargetDependency */,
+			);
+			name = "OmniScript-MacTests";
+			productName = "OmniScript-MacTests";
+			productReference = 42A70CEA15FFAFF200B8D79B /* OmniScript-MacTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		42A70D0315FFAFFD00B8D79B /* OmniScript */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70D2115FFAFFE00B8D79B /* Build configuration list for PBXNativeTarget "OmniScript" */;
+			buildPhases = (
+				42A70CFF15FFAFFD00B8D79B /* Sources */,
+				42A70D0015FFAFFD00B8D79B /* Frameworks */,
+				42A70D0115FFAFFD00B8D79B /* Headers */,
+				42A70D0215FFAFFD00B8D79B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OmniScript;
+			productName = OmniScript;
+			productReference = 42A70D0415FFAFFD00B8D79B /* OmniScript.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42A70D1115FFAFFE00B8D79B /* OmniScriptTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A70D2415FFAFFE00B8D79B /* Build configuration list for PBXNativeTarget "OmniScriptTests" */;
+			buildPhases = (
+				42A70D0D15FFAFFE00B8D79B /* Sources */,
+				42A70D0E15FFAFFE00B8D79B /* Frameworks */,
+				42A70D0F15FFAFFE00B8D79B /* Resources */,
+				42A70D1015FFAFFE00B8D79B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42A70D1615FFAFFE00B8D79B /* PBXTargetDependency */,
+			);
+			name = OmniScriptTests;
+			productName = OmniScriptTests;
+			productReference = 42A70D1215FFAFFE00B8D79B /* OmniScriptTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42A70C9E15FFAFC600B8D79B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "The Omni Group";
+			};
+			buildConfigurationList = 42A70CA115FFAFC600B8D79B /* Build configuration list for PBXProject "OmniScript" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 42A70C9C15FFAFC600B8D79B;
+			productRefGroup = 42A70CA815FFAFC600B8D79B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42A70CA615FFAFC600B8D79B /* OmniScript-iOS */,
+				42A70CB715FFAFC600B8D79B /* OmniScript-iOSTests */,
+				42A70CD615FFAFF200B8D79B /* OmniScript-Mac */,
+				42A70CE915FFAFF200B8D79B /* OmniScript-MacTests */,
+				42A70D0315FFAFFD00B8D79B /* OmniScript */,
+				42A70D1115FFAFFE00B8D79B /* OmniScriptTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42A70CB515FFAFC600B8D79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70CC615FFAFC600B8D79B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CD515FFAFF200B8D79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70CE315FFAFF200B8D79B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CE715FFAFF200B8D79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70CF515FFAFF300B8D79B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0215FFAFFD00B8D79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D0B15FFAFFD00B8D79B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0F15FFAFFE00B8D79B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D1D15FFAFFE00B8D79B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42A70CB615FFAFC600B8D79B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		42A70CE815FFAFF200B8D79B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		42A70D1015FFAFFE00B8D79B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42A70CA315FFAFC600B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3115FFB09800B8D79B /* OSMessenger.m in Sources */,
+				42A70D5B15FFC9E500B8D79B /* OSMessage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CB315FFAFC600B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D5415FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CD215FFAFF200B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3215FFB09800B8D79B /* OSMessenger.m in Sources */,
+				42A70D5C15FFC9E500B8D79B /* OSMessage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CE515FFAFF200B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D5515FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70CFF15FFAFFD00B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D3315FFB09800B8D79B /* OSMessenger.m in Sources */,
+				42A70D5D15FFC9E500B8D79B /* OSMessage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A70D0D15FFAFFE00B8D79B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A70D5615FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42A70CBF15FFAFC600B8D79B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42A70CA615FFAFC600B8D79B /* OmniScript-iOS */;
+			targetProxy = 42A70CBE15FFAFC600B8D79B /* PBXContainerItemProxy */;
+		};
+		42A70CEE15FFAFF300B8D79B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42A70CD615FFAFF200B8D79B /* OmniScript-Mac */;
+			targetProxy = 42A70CED15FFAFF300B8D79B /* PBXContainerItemProxy */;
+		};
+		42A70D1615FFAFFE00B8D79B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42A70D0315FFAFFD00B8D79B /* OmniScript */;
+			targetProxy = 42A70D1515FFAFFE00B8D79B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42A70CC415FFAFC600B8D79B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A70CC515FFAFC600B8D79B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42A70CE115FFAFF200B8D79B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A70CE215FFAFF200B8D79B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42A70CF315FFAFF300B8D79B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A70CF415FFAFF300B8D79B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42A70D0915FFAFFD00B8D79B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A70D0A15FFAFFD00B8D79B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42A70D1B15FFAFFE00B8D79B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A70D1C15FFAFFE00B8D79B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42A70CCA15FFAFC600B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		42A70CCB15FFAFC600B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		42A70CCD15FFAFC600B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/OmniScript_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-iOS/OmniScript-iOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		42A70CCE15FFAFC600B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/OmniScript_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-iOS/OmniScript-iOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		42A70CD015FFAFC600B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-iOS/OmniScript-iOS-Prefix.pch";
+				INFOPLIST_FILE = "OmniScript-iOSTests/OmniScript-iOSTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		42A70CD115FFAFC600B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-iOS/OmniScript-iOS-Prefix.pch";
+				INFOPLIST_FILE = "OmniScript-iOSTests/OmniScript-iOSTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		42A70CFA15FFAFF300B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-Mac/OmniScript-Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript-Mac/OmniScript-Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		42A70CFB15FFAFF300B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-Mac/OmniScript-Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript-Mac/OmniScript-Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		42A70CFD15FFAFF300B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-Mac/OmniScript-Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript-MacTests/OmniScript-MacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		42A70CFE15FFAFF300B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript-Mac/OmniScript-Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript-MacTests/OmniScript-MacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		42A70D2215FFAFFE00B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript/OmniScript-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript/OmniScript-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		42A70D2315FFAFFE00B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript/OmniScript-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScript/OmniScript-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		42A70D2515FFAFFE00B8D79B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript/OmniScript-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScriptTests/OmniScriptTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		42A70D2615FFAFFE00B8D79B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OmniScript/OmniScript-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OmniScriptTests/OmniScriptTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Frameworks/Kiwi/Kiwi";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42A70CA115FFAFC600B8D79B /* Build configuration list for PBXProject "OmniScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70CCA15FFAFC600B8D79B /* Debug */,
+				42A70CCB15FFAFC600B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70CCC15FFAFC600B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70CCD15FFAFC600B8D79B /* Debug */,
+				42A70CCE15FFAFC600B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70CCF15FFAFC600B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70CD015FFAFC600B8D79B /* Debug */,
+				42A70CD115FFAFC600B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70CF915FFAFF300B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70CFA15FFAFF300B8D79B /* Debug */,
+				42A70CFB15FFAFF300B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70CFC15FFAFF300B8D79B /* Build configuration list for PBXNativeTarget "OmniScript-MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70CFD15FFAFF300B8D79B /* Debug */,
+				42A70CFE15FFAFF300B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70D2115FFAFFE00B8D79B /* Build configuration list for PBXNativeTarget "OmniScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70D2215FFAFFE00B8D79B /* Debug */,
+				42A70D2315FFAFFE00B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A70D2415FFAFFE00B8D79B /* Build configuration list for PBXNativeTarget "OmniScriptTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A70D2515FFAFFE00B8D79B /* Debug */,
+				42A70D2615FFAFFE00B8D79B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42A70C9E15FFAFC600B8D79B /* Project object */;
+}

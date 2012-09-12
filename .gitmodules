@@ -1,0 +1,3 @@
+[submodule "OmniScript/Frameworks/Kiwi"]
+	path = OmniScript/Frameworks/Kiwi
+	url = https://github.com/allending/Kiwi.git
