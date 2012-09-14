@@ -42,6 +42,14 @@
 		42A70D5B15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
 		42A70D5C15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
 		42A70D5D15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
+		42CDC90B1603F5A200EE1B08 /* OSViewRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CDC9091603F5A200EE1B08 /* OSViewRequest.h */; };
+		42CDC90C1603F5A200EE1B08 /* OSViewRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CDC9091603F5A200EE1B08 /* OSViewRequest.h */; };
+		42CDC90D1603F5A200EE1B08 /* OSViewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */; };
+		42CDC90E1603F5A200EE1B08 /* OSViewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */; };
+		42CDC90F1603F5A200EE1B08 /* OSViewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */; };
+		42CDC9121603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
+		42CDC9131603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
+		42CDC9141603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +124,9 @@
 		42A70D5315FFC97500B8D79B /* OSMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessageSpec.m; path = "Shared Tests/OSMessageSpec.m"; sourceTree = "<group>"; };
 		42A70D5715FFC9E500B8D79B /* OSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessage.h; path = Common/OSMessage.h; sourceTree = "<group>"; };
 		42A70D5815FFC9E500B8D79B /* OSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessage.m; path = Common/OSMessage.m; sourceTree = "<group>"; };
+		42CDC9091603F5A200EE1B08 /* OSViewRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSViewRequest.h; path = Common/OSViewRequest.h; sourceTree = "<group>"; };
+		42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewRequest.m; path = Common/OSViewRequest.m; sourceTree = "<group>"; };
+		42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewRequestSpec.m; path = "Shared Tests/OSViewRequestSpec.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +373,8 @@
 			children = (
 				42A70D5715FFC9E500B8D79B /* OSMessage.h */,
 				42A70D5815FFC9E500B8D79B /* OSMessage.m */,
+				42CDC9091603F5A200EE1B08 /* OSViewRequest.h */,
+				42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -370,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				42A70D5315FFC97500B8D79B /* OSMessageSpec.m */,
+				42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */,
 			);
 			name = "Shared Tests";
 			sourceTree = "<group>";
@@ -383,6 +397,7 @@
 			files = (
 				42A70D3415FFB09800B8D79B /* OSMessenger.h in Headers */,
 				42A70D5915FFC9E500B8D79B /* OSMessage.h in Headers */,
+				42CDC90B1603F5A200EE1B08 /* OSViewRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +407,7 @@
 			files = (
 				42A70D3515FFB09800B8D79B /* OSMessenger.h in Headers */,
 				42A70D5A15FFC9E500B8D79B /* OSMessage.h in Headers */,
+				42CDC90C1603F5A200EE1B08 /* OSViewRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +647,7 @@
 			files = (
 				42A70D3115FFB09800B8D79B /* OSMessenger.m in Sources */,
 				42A70D5B15FFC9E500B8D79B /* OSMessage.m in Sources */,
+				42CDC90D1603F5A200EE1B08 /* OSViewRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +656,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70D5415FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+				42CDC9121603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +666,7 @@
 			files = (
 				42A70D3215FFB09800B8D79B /* OSMessenger.m in Sources */,
 				42A70D5C15FFC9E500B8D79B /* OSMessage.m in Sources */,
+				42CDC90E1603F5A200EE1B08 /* OSViewRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70D5515FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+				42CDC9131603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +685,7 @@
 			files = (
 				42A70D3315FFB09800B8D79B /* OSMessenger.m in Sources */,
 				42A70D5D15FFC9E500B8D79B /* OSMessage.m in Sources */,
+				42CDC90F1603F5A200EE1B08 /* OSViewRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70D5615FFC97500B8D79B /* OSMessageSpec.m in Sources */,
+				42CDC9141603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
