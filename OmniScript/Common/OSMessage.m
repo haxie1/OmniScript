@@ -12,7 +12,10 @@
 @interface OSMessage ()
 @property (nonatomic, readwrite, retain) OSMessage *subMessage;
 @property (nonatomic, assign) OSMessage *parentMessage;
+@property (nonatomic, assign) BOOL resolveMessage;
+
 - (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments subMessage:(OSMessage *)subMessage;
+- (id)messageFromKeyPath:(NSString *)keypath;
 @end
 
 static NSString *SELECTOR_KEY = @"selectorName";
@@ -24,6 +27,7 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 @synthesize arguments = _arguments;
 @synthesize subMessage = _subMessage;
 @synthesize parentMessage = _parentMessage;
+@synthesize resolveMessage = _resolveMessage;
 
 - (id)initWithSelector:(SEL)selector arguments:(NSArray *)arguments
 {
@@ -52,6 +56,17 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
     }
     
     return self;
+}
+
+- (id)initWithKeyPath:(NSString *)keypath
+{
+    self = [self initWithSelectorName:nil arguments:nil subMessage:nil];
+    return [self messageFromKeyPath:keypath];
+}
+
+- (id)init
+{
+    return [self initWithSelectorName:nil arguments:nil subMessage:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -88,16 +103,85 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 
 - (id)message:(NSString *)selectorName arguments:(NSArray *)args
 {
+    // if the root message isn't 
+    if(self.selectorName == nil) {
+        self.selectorName = selectorName;
+        self.arguments = args;
+        return self;
+    }
+    
     OSMessage *parent = nil;
     if(self.subMessage == nil) {
         self.subMessage = [[[OSMessage alloc] initWithSelectorName:selectorName arguments:args] autorelease];
         self.subMessage.parentMessage = self;
         parent = (self.parentMessage == nil ? self : self.parentMessage);
     } else {
+        // since this message already has a sub message, lets ask the sub message to add the message.
+        // we always return the parent message so that we end up with the root message for serialization purposes.
+        // 
         parent = [self.subMessage message:selectorName arguments:args];
     }
     
     return parent;
+}
+
+#pragma mark - Method Missing support
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    // we have no way to know what return and argument types are for a given selector.
+    // so, we figure out the number of arguments and just fake a signature using that info
+    NSUInteger count = [[NSStringFromSelector(aSelector) componentsSeparatedByString:@":"] count] - 1;
+    NSMutableString *baseSig = [NSMutableString stringWithString:@"@@:"];
+    for(NSUInteger i = 0; i < count; i++) {
+        [baseSig appendString:@"@"];
+    }
+    
+    // when the dynamic api is used, method arguments are packed up as NSData objects.
+    // we have no idea what the arguments are, but the actual method signature will be able to tell us
+    // this flag is set so that the server side knows to resolve the method and its args properly.
+    self.resolveMessage = YES;
+    
+    return [NSMethodSignature signatureWithObjCTypes:[baseSig UTF8String]];
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
+    // we need to package up our arguments (if any) as data objects
+    // stuff them into an array, and then hand the whole mess off to -message:arguments: for message creation.
+    NSMethodSignature *sig = [anInvocation methodSignature];
+    
+    NSUInteger argCount = [sig numberOfArguments];
+    NSString *selectorString = NSStringFromSelector([anInvocation selector]);
+    NSMutableArray *args = nil;
+    
+    if(argCount > 2) {
+        args = [NSMutableArray array];
+        for(NSUInteger i = 2; i < argCount; i++) {
+            void *bytes = NULL;
+            
+            [anInvocation getArgument:&bytes atIndex:i];
+            int size = sizeof(bytes);
+            NSLog(@"size: %d", size);
+            NSData *d = [NSData dataWithBytes:&bytes length:sizeof(bytes)];
+            [args addObject:d];
+        }
+    }
+    
+    [self message:selectorString arguments:args];
+    [anInvocation setReturnValue:&self];
+}
+
+#pragma mark - Internal
+// keypaths don't support @key modifiers... so no foo.bar.@sum
+- (id)messageFromKeyPath:(NSString *)keypath
+{
+    NSArray *keys = [keypath componentsSeparatedByString:@"."];
+    [keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSArray *args = [NSArray arrayWithObject:obj];
+        [self message:@"valueForKey:" arguments:args];
+    }];
+    
+    return self;
 }
 
 - (NSString *)description
