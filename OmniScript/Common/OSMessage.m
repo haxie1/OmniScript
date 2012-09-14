@@ -130,15 +130,15 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 {
     // we have no way to know what return and argument types are for a given selector.
     // so, we figure out the number of arguments and just fake a signature using that info
+    // since we want to return an OSMessasge, the return type is '@'
     NSUInteger count = [[NSStringFromSelector(aSelector) componentsSeparatedByString:@":"] count] - 1;
     NSMutableString *baseSig = [NSMutableString stringWithString:@"@@:"];
     for(NSUInteger i = 0; i < count; i++) {
         [baseSig appendString:@"@"];
     }
     
-    // when the dynamic api is used, method arguments are packed up as NSData objects.
-    // we have no idea what the arguments are, but the actual method signature will be able to tell us
-    // this flag is set so that the server side knows to resolve the method and its args properly.
+    // we will need to unpack our arguments on the server once we can get the real method signature
+    // this flag will let our server side operation know to do that work.
     self.resolveMessage = YES;
     
     return [NSMethodSignature signatureWithObjCTypes:[baseSig UTF8String]];

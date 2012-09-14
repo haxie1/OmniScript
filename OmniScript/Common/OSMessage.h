@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) BOOL resolveMessage;
 
 - (id)initWithSelector:(SEL)selector arguments:(NSArray *)arguments;
-- (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments;
+- (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments; //designated initalizers
 - (id)initWithKeyPath:(NSString *)keypath;
 
 - (SEL)selector;
