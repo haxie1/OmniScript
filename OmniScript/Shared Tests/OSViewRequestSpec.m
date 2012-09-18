@@ -26,24 +26,51 @@ describe(@"OSViewRequest", ^{
         [[req.viewClass should] equal:@"view"];
     });
     
+    context(@"when building requests", ^{
+        
+        __block OSViewRequest *firstReq = nil;
+        __block OSViewRequest *builderResult = nil;
+        beforeEach(^{
+             firstReq = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
+            builderResult = [[firstReq findViewClass:@"tableView"] findViewClass:@"tableViewCell" withIdentifer:@"bar"];
+            NSLog(@"firstReq: %@", [firstReq description]);
+        });
+        
+        it(@"should build nested requests", ^{
+            [[firstReq.request.request shouldNot] beNil];
+            [[firstReq.request.request.viewClass should] equal:@"tableViewCell"];
+        });
+        
+        it(@"should always return the root view request", ^{
+            [[builderResult should] equal:firstReq];
+        });
+    });
+    
     context(@"when serializing", ^{
+        __block OSViewRequest *req;
+        __block OSViewRequest *unpackedReq;
+        
+        beforeEach(^{
+            req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
+            [[req findViewClass:@"firstSubView"] findViewClass:@"subView" withIdentifier:@"bar" usingMessageForIdentifier:nil];
+            NSData *d = [NSKeyedArchiver archivedDataWithRootObject:req];
+            unpackedReq = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+        });
+        
         it(@"should conform to NSCoding", ^{
             [[OSViewRequest should] conformToProtocol:@protocol(NSCoding)];
         });
         
         it(@"should encode and decode the object correctly", ^{
-            OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
-            NSData *d = [NSKeyedArchiver archivedDataWithRootObject:req];
-            OSViewRequest *unpackedReq = [NSKeyedUnarchiver unarchiveObjectWithData:d];
-            
             [[unpackedReq.viewClass should] equal:req.viewClass];
             [[unpackedReq.identifier should] equal:req.identifier];
             [[unpackedReq.identifierMessage.selectorName should] equal:@"omniScriptIdentifier"];
         });
-    });
-    
-    context(@"when building requests", ^{
         
+        it(@"should properly encode/decode sub requests", ^{
+            [[unpackedReq.request.viewClass should] equal:@"firstSubView"];
+            [[unpackedReq.request.request.viewClass should] equal:@"subView"];
+        });
     });
 });
 SPEC_END
