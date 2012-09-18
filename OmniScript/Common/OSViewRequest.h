@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "OSMessage.h"
 
-@interface OSViewRequest : NSObject
+@interface OSViewRequest : NSObject <NSCoding>
 
+@property (nonatomic, copy) NSString *viewClass;
+@property (nonatomic, retain) id identifier;
+@property (nonatomic, retain) OSMessage *identifierMessage;
+
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message;
 @end
