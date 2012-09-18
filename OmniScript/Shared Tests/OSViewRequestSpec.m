@@ -4,25 +4,25 @@
 SPEC_BEGIN(OSViewRequestSpec)
 describe(@"OSViewRequest", ^{
     it(@"should be intialized with arguments", ^{
-        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:nil identifierUsingMessage:nil];
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:nil usingMessageForIdentifier:nil];
         [[req shouldNot] beNil];
         [[req.viewClass should] equal:@"view"];
     });
     
     it(@"should create a default message if no message is given", ^{
-        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" usingMessageForIdentifier:nil];
         [[req.identifierMessage shouldNot] beNil];
         [[req.identifierMessage.selectorName should] equal:@"omniScriptIdentifier"];
     });
     
     it(@"should use the message given", ^{
         OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"foo" arguments:nil];
-        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:message];
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" usingMessageForIdentifier:message];
         [[req.identifierMessage should] equal:message];
     });
     
     it(@"should the view class to 'view' if no viewClass is given", ^{
-        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" identifierUsingMessage:nil];
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
         [[req.viewClass should] equal:@"view"];
     });
     
@@ -31,7 +31,7 @@ describe(@"OSViewRequest", ^{
         __block OSViewRequest *firstReq = nil;
         __block OSViewRequest *builderResult = nil;
         beforeEach(^{
-             firstReq = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
+             firstReq = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" usingMessageForIdentifier:nil];
             builderResult = [[firstReq findViewClass:@"tableView"] findViewClass:@"tableViewCell" withIdentifer:@"bar"];
             NSLog(@"firstReq: %@", [firstReq description]);
         });
@@ -51,7 +51,7 @@ describe(@"OSViewRequest", ^{
         __block OSViewRequest *unpackedReq;
         
         beforeEach(^{
-            req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" identifierUsingMessage:nil];
+            req = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" usingMessageForIdentifier:nil];
             [[req findViewClass:@"firstSubView"] findViewClass:@"subView" withIdentifier:@"bar" usingMessageForIdentifier:nil];
             NSData *d = [NSKeyedArchiver archivedDataWithRootObject:req];
             unpackedReq = [NSKeyedUnarchiver unarchiveObjectWithData:d];

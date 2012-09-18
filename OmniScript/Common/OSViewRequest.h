@@ -16,7 +16,7 @@
 @property (nonatomic, retain) OSMessage *identifierMessage;
 @property (nonatomic, retain) OSViewRequest *request;
 
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message;
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message;
 
 // message builder
 - (id)findViewClass:(NSString *)viewClass;

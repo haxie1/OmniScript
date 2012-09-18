@@ -9,7 +9,7 @@
 #import "OSViewRequest.h"
 
 @interface OSViewRequest ()
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message subViewRequest:(OSViewRequest *)request;
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request;
 @end
 
 static NSString *VIEW_CLASS_KEY = @"viewClass";
@@ -23,13 +23,13 @@ static NSString *REQUEST_KEY = @"request";
 @synthesize identifierMessage = _identifierMessage;
 @synthesize request = _request;
 
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message
 {
     
-    return [self initWithViewClass:viewClass identifier:identifier identifierUsingMessage:message subViewRequest:nil];
+    return [self initWithViewClass:viewClass identifier:identifier usingMessageForIdentifier:message subViewRequest:nil];
 }
 
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message subViewRequest:(OSViewRequest *)request
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request
 {
     if(! (self = [super init])) {
         [self release];
@@ -63,7 +63,7 @@ static NSString *REQUEST_KEY = @"request";
     OSMessage *message = [aDecoder decodeObjectForKey:IDENTIFIER_MESSAGE_KEY];
     OSViewRequest *req = [aDecoder decodeObjectForKey:REQUEST_KEY];
     
-    return [self initWithViewClass:viewClass identifier:ident identifierUsingMessage:message subViewRequest:req];
+    return [self initWithViewClass:viewClass identifier:ident usingMessageForIdentifier:message subViewRequest:req];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
@@ -98,7 +98,7 @@ static NSString *REQUEST_KEY = @"request";
 {
     OSViewRequest *subReq = self.request;
     if(subReq == nil) {
-        self.request = [[[OSViewRequest alloc] initWithViewClass:viewClass identifier:identifier identifierUsingMessage:message] autorelease];
+        self.request = [[[OSViewRequest alloc] initWithViewClass:viewClass identifier:identifier usingMessageForIdentifier:message] autorelease];
     } else {
         [subReq findViewClass:viewClass withIdentifier:identifier usingMessageForIdentifier:message];
     }
