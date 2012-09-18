@@ -11,6 +11,7 @@
 @interface OSViewRequest ()
 - (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier identifierUsingMessage:(OSMessage *)message subViewRequest:(OSViewRequest *)request;
 @end
+
 static NSString *VIEW_CLASS_KEY = @"viewClass";
 static NSString *IDENTIFIER_KEY = @"identifier";
 static NSString *IDENTIFIER_MESSAGE_KEY = @"identifierMessage";
