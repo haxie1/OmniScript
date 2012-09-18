@@ -33,7 +33,6 @@ describe(@"OSViewRequest", ^{
         beforeEach(^{
              firstReq = [[OSViewRequest alloc] initWithViewClass:@"view" identifier:@"foo" usingMessageForIdentifier:nil];
             builderResult = [[firstReq findViewClass:@"tableView"] findViewClass:@"tableViewCell" withIdentifer:@"bar"];
-            NSLog(@"firstReq: %@", [firstReq description]);
         });
         
         it(@"should build nested requests", ^{
@@ -44,6 +43,28 @@ describe(@"OSViewRequest", ^{
         it(@"should always return the root view request", ^{
             [[builderResult should] equal:firstReq];
         });
+        
+        context(@"when finding by identifier", ^{
+            __block OSViewRequest *req = nil;
+            beforeEach(^{
+               req = [[OSViewRequest alloc] initWithViewClass:@"tableView" identifier:nil usingMessageForIdentifier:nil];
+            });
+            
+            it(@"should allow searching by idendifier only", ^{
+                OSViewRequest *usingIDReq = [req findIdentifer:@"bar"];
+                [[usingIDReq.request shouldNot] beNil];
+                [[usingIDReq.request.viewClass should] equal:@"view"];
+                [[usingIDReq.request.identifier should] equal:@"bar"];
+                
+            });
+            
+            it(@"should allow searching be identifer using a custom message", ^{
+                OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"someMethod" arguments:nil];
+                OSViewRequest *usingIDReq = [req findIdentifer:@"bar" usingMessageForIdentifier:message];
+                [[usingIDReq.request.identifierMessage should] equal:message];
+            });
+        });
+        
     });
     
     context(@"when serializing", ^{

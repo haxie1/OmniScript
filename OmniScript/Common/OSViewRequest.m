@@ -84,6 +84,16 @@ static NSString *REQUEST_KEY = @"request";
     [super dealloc];
 }
 
+- (id)findIdentifer:(id)identifer
+{
+    return [self findViewClass:nil withIdentifier:identifer usingMessageForIdentifier:nil];
+}
+
+- (id)findIdentifer:(id)identifer usingMessageForIdentifier:(OSMessage *)message
+{
+    return [self findViewClass:nil withIdentifier:identifer usingMessageForIdentifier:message];
+}
+
 - (id)findViewClass:(NSString *)viewClass
 {
     return [self findViewClass:viewClass withIdentifier:nil usingMessageForIdentifier:nil];
