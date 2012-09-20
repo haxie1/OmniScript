@@ -1,9 +1,9 @@
 #import "kiwi.h"
-#import "OSMessageResponse.h"
+#import "OSResponse.h"
 
 SPEC_BEGIN(OSMessageResponseSpec)
 
-describe(@"OSMessageResponse", ^{
+describe(@"OSResponse", ^{
     
 });
 

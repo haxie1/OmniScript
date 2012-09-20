@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 The Omni Group. All rights reserved.
 //
 
-#import "OSMessageResponse.h"
+#import "OSResponse.h"
 
-@implementation OSMessageResponse
+@implementation OSResponse
 
 @end

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OSMessageResponse : NSObject
+@interface OSResponse : NSObject
 
 @end
