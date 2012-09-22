@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface OSResponse : NSObject
+@property (nonatomic, assign) BOOL status;
+@property (nonatomic, retain) id result;
+@property (nonatomic, retain) NSError *error;
 
+- (id)initWithStatus:(BOOL)yn result:(id)result error:(NSError *)error;
 @end

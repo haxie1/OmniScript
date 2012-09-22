@@ -42,9 +42,9 @@
 		42A70D5B15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
 		42A70D5C15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
 		42A70D5D15FFC9E500B8D79B /* OSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A70D5815FFC9E500B8D79B /* OSMessage.m */; };
-		42B7B9B0160BCD47005F602E /* OSMessageResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSMessageResponseSpec.m */; };
-		42B7B9B1160BCD47005F602E /* OSMessageResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSMessageResponseSpec.m */; };
-		42B7B9B2160BCD47005F602E /* OSMessageResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSMessageResponseSpec.m */; };
+		42B7B9B0160BCD47005F602E /* OSResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
+		42B7B9B1160BCD47005F602E /* OSResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
+		42B7B9B2160BCD47005F602E /* OSResponseSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
 		42B7B9B6160BCD95005F602E /* OSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7B9B4160BCD95005F602E /* OSResponse.h */; };
 		42B7B9B7160BCD95005F602E /* OSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7B9B4160BCD95005F602E /* OSResponse.h */; };
 		42B7B9B8160BCD95005F602E /* OSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9B5160BCD95005F602E /* OSResponse.m */; };
@@ -132,7 +132,7 @@
 		42A70D5315FFC97500B8D79B /* OSMessageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessageSpec.m; path = "Shared Tests/OSMessageSpec.m"; sourceTree = "<group>"; };
 		42A70D5715FFC9E500B8D79B /* OSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessage.h; path = Common/OSMessage.h; sourceTree = "<group>"; };
 		42A70D5815FFC9E500B8D79B /* OSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessage.m; path = Common/OSMessage.m; sourceTree = "<group>"; };
-		42B7B9AF160BCD47005F602E /* OSMessageResponseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSMessageResponseSpec.m; path = "Shared Tests/OSMessageResponseSpec.m"; sourceTree = "<group>"; };
+		42B7B9AF160BCD47005F602E /* OSResponseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResponseSpec.m; path = "Shared Tests/OSResponseSpec.m"; sourceTree = "<group>"; };
 		42B7B9B4160BCD95005F602E /* OSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSResponse.h; path = Common/OSResponse.h; sourceTree = "<group>"; };
 		42B7B9B5160BCD95005F602E /* OSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResponse.m; path = Common/OSResponse.m; sourceTree = "<group>"; };
 		42CDC9091603F5A200EE1B08 /* OSViewRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSViewRequest.h; path = Common/OSViewRequest.h; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 			children = (
 				42A70D5315FFC97500B8D79B /* OSMessageSpec.m */,
 				42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */,
-				42B7B9AF160BCD47005F602E /* OSMessageResponseSpec.m */,
+				42B7B9AF160BCD47005F602E /* OSResponseSpec.m */,
 			);
 			name = "Shared Tests";
 			sourceTree = "<group>";
@@ -577,7 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70CC615FFAFC600B8D79B /* InfoPlist.strings in Resources */,
-				42B7B9B0160BCD47005F602E /* OSMessageResponseSpec.m in Resources */,
+				42B7B9B0160BCD47005F602E /* OSResponseSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70CF515FFAFF300B8D79B /* InfoPlist.strings in Resources */,
-				42B7B9B1160BCD47005F602E /* OSMessageResponseSpec.m in Resources */,
+				42B7B9B1160BCD47005F602E /* OSResponseSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A70D1D15FFAFFE00B8D79B /* InfoPlist.strings in Resources */,
-				42B7B9B2160BCD47005F602E /* OSMessageResponseSpec.m in Resources */,
+				42B7B9B2160BCD47005F602E /* OSResponseSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
