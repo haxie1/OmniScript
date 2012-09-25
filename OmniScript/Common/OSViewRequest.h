@@ -16,6 +16,8 @@
 @property (nonatomic, retain) OSMessage *identifierMessage;
 @property (nonatomic, retain) OSViewRequest *request;
 
+@property (nonatomic, readonly, retain) NSString *requestID;
+
 - (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message;
 
 // message builder

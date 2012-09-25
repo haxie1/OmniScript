@@ -9,13 +9,16 @@
 #import "OSViewRequest.h"
 
 @interface OSViewRequest ()
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request;
+@property (nonatomic, readwrite, retain) NSString *requestID;
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request requestID:(NSString *)requestID;
+- (NSString *)generateRequestID;
 @end
 
 static NSString *VIEW_CLASS_KEY = @"viewClass";
 static NSString *IDENTIFIER_KEY = @"identifier";
 static NSString *IDENTIFIER_MESSAGE_KEY = @"identifierMessage";
 static NSString *REQUEST_KEY = @"request";
+static NSString *REQUEST_ID_KEY = @"requestID";
 
 @implementation OSViewRequest
 @synthesize viewClass = _viewClass;
@@ -23,13 +26,15 @@ static NSString *REQUEST_KEY = @"request";
 @synthesize identifierMessage = _identifierMessage;
 @synthesize request = _request;
 
+@synthesize requestID = _requestID;
+
 - (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message
 {
     
-    return [self initWithViewClass:viewClass identifier:identifier usingMessageForIdentifier:message subViewRequest:nil];
+    return [self initWithViewClass:viewClass identifier:identifier usingMessageForIdentifier:message subViewRequest:nil requestID:nil];
 }
 
-- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request
+- (id)initWithViewClass:(NSString *)viewClass identifier:(id)identifier usingMessageForIdentifier:(OSMessage *)message subViewRequest:(OSViewRequest *)request requestID:(NSString *)requestID
 {
     if(! (self = [super init])) {
         [self release];
@@ -53,6 +58,12 @@ static NSString *REQUEST_KEY = @"request";
       _request = [request retain];  
     }
     
+    if(! requestID) {
+        requestID = [self generateRequestID];
+    }
+    
+    _requestID = [requestID retain];
+    
     return self;
 }
 
@@ -62,8 +73,9 @@ static NSString *REQUEST_KEY = @"request";
     id ident = [aDecoder decodeObjectForKey:IDENTIFIER_KEY];
     OSMessage *message = [aDecoder decodeObjectForKey:IDENTIFIER_MESSAGE_KEY];
     OSViewRequest *req = [aDecoder decodeObjectForKey:REQUEST_KEY];
+    NSString *reqID = [aDecoder decodeObjectForKey:REQUEST_ID_KEY];
     
-    return [self initWithViewClass:viewClass identifier:ident usingMessageForIdentifier:message subViewRequest:req];
+    return [self initWithViewClass:viewClass identifier:ident usingMessageForIdentifier:message subViewRequest:req requestID:reqID];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
@@ -72,6 +84,7 @@ static NSString *REQUEST_KEY = @"request";
     [aCoder encodeObject:self.identifier forKey:IDENTIFIER_KEY];
     [aCoder encodeObject:self.identifierMessage forKey:IDENTIFIER_MESSAGE_KEY];
     [aCoder encodeObject:self.request forKey:REQUEST_KEY];
+    [aCoder encodeObject:self.requestID forKey:REQUEST_ID_KEY];
 }
 
 - (void)dealloc
@@ -82,6 +95,16 @@ static NSString *REQUEST_KEY = @"request";
     [_request release];
     
     [super dealloc];
+}
+
+- (NSString *)generateRequestID
+{
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString *uuidStr = (NSString *)CFUUIDCreateString(NULL, uuid);
+    
+    CFRelease(uuid);
+    
+    return [uuidStr autorelease];
 }
 
 - (id)findIdentifer:(id)identifer

@@ -21,9 +21,14 @@ describe(@"OSViewRequest", ^{
         [[req.identifierMessage should] equal:message];
     });
     
-    it(@"should the view class to 'view' if no viewClass is given", ^{
+    it(@"should set the view class to 'view' if no viewClass is given", ^{
         OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
         [[req.viewClass should] equal:@"view"];
+    });
+    
+    it(@"should generate a unique id", ^{
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
+        [[req.requestID shouldNot] beNil];
     });
     
     context(@"when building requests", ^{
@@ -91,6 +96,10 @@ describe(@"OSViewRequest", ^{
         it(@"should properly encode/decode sub requests", ^{
             [[unpackedReq.request.viewClass should] equal:@"firstSubView"];
             [[unpackedReq.request.request.viewClass should] equal:@"subView"];
+        });
+        
+        it(@"should maintain the same requestID for decoded objects", ^{
+            [[req.requestID should] equal:unpackedReq.requestID];
         });
     });
 });
