@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OSResponse : NSObject
-@property (nonatomic, assign) BOOL status;
+@interface OSResponse : NSObject <NSCoding>
+@property (nonatomic, assign) BOOL requestSucceeded;
 @property (nonatomic, retain) id result;
 @property (nonatomic, retain) NSError *error;
+@property (nonatomic, readonly, retain) NSString *responseID;
 
-- (id)initWithStatus:(BOOL)yn result:(id)result error:(NSError *)error;
+- (id)initWithRequestID:(NSString *)requestID result:(id)result requestSucceeded:(BOOL)yn error:(NSError *)error;
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4228BBBD161221450083B1D3 /* OSResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
+		4228BBBF161221570083B1D3 /* OSResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
+		4228BBC01612215D0083B1D3 /* OSResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9AF160BCD47005F602E /* OSResponseSpec.m */; };
 		42A70CAB15FFAFC600B8D79B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CAA15FFAFC600B8D79B /* Foundation.framework */; };
 		42A70CBA15FFAFC600B8D79B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CB915FFAFC600B8D79B /* SenTestingKit.framework */; };
 		42A70CBC15FFAFC600B8D79B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A70CBB15FFAFC600B8D79B /* UIKit.framework */; };
@@ -677,6 +680,7 @@
 			files = (
 				42A70D5415FFC97500B8D79B /* OSMessageSpec.m in Sources */,
 				42CDC9121603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
+				4228BBBD161221450083B1D3 /* OSResponseSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +701,7 @@
 			files = (
 				42A70D5515FFC97500B8D79B /* OSMessageSpec.m in Sources */,
 				42CDC9131603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
+				4228BBBF161221570083B1D3 /* OSResponseSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +722,7 @@
 			files = (
 				42A70D5615FFC97500B8D79B /* OSMessageSpec.m in Sources */,
 				42CDC9141603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
+				4228BBC01612215D0083B1D3 /* OSResponseSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
