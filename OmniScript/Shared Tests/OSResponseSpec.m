@@ -38,6 +38,7 @@ describe(@"OSResponse", ^{
         
         it(@"should encode and decode the object correctly", ^{
             NSError *error = [NSError errorWithDomain:@"foo" code:1 userInfo:nil];
+            
             OSResponse *response = [[OSResponse alloc] initWithRequestID:uuid() result:@"Foo" requestSucceeded:YES error:error];
             NSData *repData = [NSKeyedArchiver archivedDataWithRootObject:response];
             OSResponse *unarchivedResp = [NSKeyedUnarchiver unarchiveObjectWithData:repData];
