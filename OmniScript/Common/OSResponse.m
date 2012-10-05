@@ -72,7 +72,7 @@ static NSString *ERROR_KEY = @"error";
 
 // there may be times when the server just needs to send a response to the client
 // since no request was generated from the client, we need to generate our own response id.
-// this may not end up being useful, but here for completeness sake.
+// this may not end up being useful, but here for completeness.
 - (NSString *)generateUUID
 {
     CFUUIDRef uuid = CFUUIDCreate(NULL);
