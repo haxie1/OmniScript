@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OSResultWrapper : NSObject
+@interface OSResultWrapper : NSObject <NSCoding>
 @property (nonatomic, readonly, retain) id result;
 @property (nonatomic, readonly, retain) NSString *type;
 

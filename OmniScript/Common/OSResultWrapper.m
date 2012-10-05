@@ -13,18 +13,44 @@
 @property (nonatomic, readwrite, retain) NSString *type;
 
 - (NSString *)stringForEncodedType:(const char *)type;
+- (id)initWithResult:(id)result type:(NSString *)type;
 @end
+
+static NSString *RESULT_KEY = @"result";
+static NSString *TYPE_KEY = @"type";
 
 @implementation OSResultWrapper
 @synthesize result = _result;
- - (id)init
+@synthesize type = _type;
+- (id)initWithResult:(id)result type:(NSString *)type
 {
     if (! (self = [super init])) {
         [self release];
         return nil;
     }
-  
+    _result = [result retain];
+    _type = [type retain];
+    
     return self;
+}
+
+ - (id)init
+{
+    return [self initWithResult:nil type:nil];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    id result = [aDecoder decodeObjectForKey:RESULT_KEY];
+    NSString *type = [aDecoder decodeObjectForKey:TYPE_KEY];
+    
+    return [self initWithResult:result type:type];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.result forKey:RESULT_KEY];
+    [aCoder encodeObject:self.type forKey:TYPE_KEY];
 }
 
 - (void)dealloc
@@ -69,14 +95,12 @@
     else if(strcmp(type, "B") == 0)
         self.result = [NSNumber numberWithBool:(BOOL)bytes];
     else if(strcmp(type, "v") == 0)
-        // what to do with void type?
-        NSLog(@"void");
-    else if(strcmp(type, "*") == 0)
-        self.result = [NSString stringWithUTF8String:(const char *)bytes];
+        self.result = nil;
+    else if((strcmp(type, "*") == 0) || (strcmp(type, "r*") == 0))
+        self.result = [NSString stringWithUTF8String:bytes];
     else {
-        
+        self.result = [NSValue valueWithBytes:bytes objCType:type];
     }
-    
     
     self.type = [self stringForEncodedType:type];
 }
