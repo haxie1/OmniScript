@@ -84,5 +84,19 @@ describe(@"OSResultWrapper", ^{
             [[decodedWrapper.type should] equal:@"{CGPoint=ff}"];
         });
     });
+    
+    it(@"should return if the wrapped result is an object", ^{
+        OSResultWrapper *wrapper = [[OSResultWrapper alloc] init];
+        [wrapper setObjectResult:@"String"];
+        [[theValue(wrapper.isObject) should] beTrue];
+    });
+    
+    it(@"isObject should be NO if the result is not an object", ^{
+        OSResultWrapper *wrapper = [[OSResultWrapper alloc] init];
+        NSUInteger value = 10;
+        [wrapper setNonObjectResult:&value forObjcType:@encode(NSUInteger)];
+        [[theValue(wrapper.isObject) should] beFalse];
+    });
+    
 });
 SPEC_END

@@ -22,6 +22,7 @@ static NSString *TYPE_KEY = @"type";
 @implementation OSResultWrapper
 @synthesize result = _result;
 @synthesize type = _type;
+
 - (id)initWithResult:(id)result type:(NSString *)type
 {
     if (! (self = [super init])) {
@@ -109,5 +110,14 @@ static NSString *TYPE_KEY = @"type";
 {
     return [NSString stringWithUTF8String:type];    
     
+}
+
+- (BOOL)isObject
+{
+    if([self.type isEqualToString:@"@"]) {
+        return YES;
+    }
+    
+    return NO;
 }
 @end

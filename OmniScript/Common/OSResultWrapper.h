@@ -11,6 +11,7 @@
 @interface OSResultWrapper : NSObject <NSCoding>
 @property (nonatomic, readonly, retain) id result;
 @property (nonatomic, readonly, retain) NSString *type;
+@property (nonatomic, readonly) BOOL isObject;
 
 - (void)setObjectResult:(id)object;
 - (void)setNonObjectResult:(const void *)bytes forObjcType:(const char *)type;
