@@ -31,6 +31,14 @@ describe(@"OSResponse", ^{
 
     });
     
+    it(@"should use OSResultWrappers for result objects", ^{
+        OSResultWrapper *wrapper = [[OSResultWrapper alloc] init];
+        int ten = 10;
+        [wrapper setNonObjectResult:&ten forObjcType:@encode(int)];
+        OSResponse *response = [[OSResponse alloc] initWithRequestID:uuid() result:wrapper requestSucceeded:YES error:nil];
+        [[response.result should] equal:wrapper];
+    });
+    
     context(@"when serializing/deserializing", ^{
         it(@"should conform to NSCoding", ^{
             [[OSResponse should] conformToProtocol:@protocol(NSCoding)];
@@ -38,14 +46,16 @@ describe(@"OSResponse", ^{
         
         it(@"should encode and decode the object correctly", ^{
             NSError *error = [NSError errorWithDomain:@"foo" code:1 userInfo:nil];
+            OSResultWrapper *wrapper = [[OSResultWrapper alloc] init];
+            [wrapper setObjectResult:@"Foo"];
             
-            OSResponse *response = [[OSResponse alloc] initWithRequestID:uuid() result:@"Foo" requestSucceeded:YES error:error];
+            OSResponse *response = [[OSResponse alloc] initWithRequestID:uuid() result:wrapper requestSucceeded:YES error:error];
             NSData *repData = [NSKeyedArchiver archivedDataWithRootObject:response];
             OSResponse *unarchivedResp = [NSKeyedUnarchiver unarchiveObjectWithData:repData];
             
             [[response.responseID should] equal:unarchivedResp.responseID];
             [[theValue(response.requestSucceeded) should] equal:theValue(unarchivedResp.requestSucceeded)];
-            [[response.result should] equal:unarchivedResp.result];
+            [[response.result.result should] equal:unarchivedResp.result.result];
             [[response.error should] equal:unarchivedResp.error];
         });
     });

@@ -23,7 +23,7 @@ static NSString *ERROR_KEY = @"error";
 @synthesize error = _error;
 @synthesize responseID = _responseID;
 
-- (id)initWithRequestID:(NSString *)requestID result:(id)result requestSucceeded:(BOOL)yn error:(NSError *)error;
+- (id)initWithRequestID:(NSString *)requestID result:(OSResultWrapper *)result requestSucceeded:(BOOL)yn error:(NSError *)error;
 {
     if(! (self = [super init])) {
         [self release];
@@ -45,7 +45,7 @@ static NSString *ERROR_KEY = @"error";
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     NSString *responseID = [aDecoder decodeObjectForKey:RESPONSE_ID_KEY];
-    id result = [aDecoder decodeObjectForKey:RESULT_KEY];
+    OSResultWrapper *result = [aDecoder decodeObjectForKey:RESULT_KEY];
     BOOL success = [aDecoder decodeBoolForKey:REQUEST_SUCCEEDED_KEY];
     NSError *err = [aDecoder decodeObjectForKey:ERROR_KEY];
     
