@@ -53,6 +53,7 @@
 		42B7B9B8160BCD95005F602E /* OSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9B5160BCD95005F602E /* OSResponse.m */; };
 		42B7B9B9160BCD95005F602E /* OSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9B5160BCD95005F602E /* OSResponse.m */; };
 		42B7B9BA160BCD95005F602E /* OSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7B9B5160BCD95005F602E /* OSResponse.m */; };
+		42C4D312162C98CA00DC0BCB /* OSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D311162C98CA00DC0BCB /* OSApplication.m */; };
 		42C9F7B6161E1A5C00347D72 /* OSResultWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */; };
 		42C9F7B7161E1A5C00347D72 /* OSResultWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */; };
 		42C9F7B8161E1A5C00347D72 /* OSResultWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */; };
@@ -148,6 +149,8 @@
 		42B7B9AF160BCD47005F602E /* OSResponseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResponseSpec.m; path = "Shared Tests/OSResponseSpec.m"; sourceTree = "<group>"; };
 		42B7B9B4160BCD95005F602E /* OSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSResponse.h; path = Common/OSResponse.h; sourceTree = "<group>"; };
 		42B7B9B5160BCD95005F602E /* OSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResponse.m; path = Common/OSResponse.m; sourceTree = "<group>"; };
+		42C4D310162C98CA00DC0BCB /* OSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSApplication.h; sourceTree = "<group>"; };
+		42C4D311162C98CA00DC0BCB /* OSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSApplication.m; sourceTree = "<group>"; };
 		42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResultWrapperSpec.m; path = "Shared Tests/OSResultWrapperSpec.m"; sourceTree = "<group>"; };
 		42C9F7BA161E1A9300347D72 /* OSResultWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSResultWrapper.h; path = Common/OSResultWrapper.h; sourceTree = "<group>"; };
 		42C9F7BB161E1A9300347D72 /* OSResultWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSResultWrapper.m; path = Common/OSResultWrapper.m; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				42A70CAD15FFAFC600B8D79B /* Supporting Files */,
+				42C4D310162C98CA00DC0BCB /* OSApplication.h */,
+				42C4D311162C98CA00DC0BCB /* OSApplication.m */,
 			);
 			path = "OmniScript-iOS";
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 		42A70D2715FFB04B00B8D79B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				42C4D30E1625EE8F00DC0BCB /* Object Traversal */,
 				42A70D4A15FFC8C800B8D79B /* Model */,
 				42A70D4815FFC89200B8D79B /* NetworkSupport */,
 			);
@@ -423,6 +429,13 @@
 				42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */,
 			);
 			name = "Shared Tests";
+			sourceTree = "<group>";
+		};
+		42C4D30E1625EE8F00DC0BCB /* Object Traversal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Object Traversal";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -694,6 +707,7 @@
 				42CDC90D1603F5A200EE1B08 /* OSViewRequest.m in Sources */,
 				42B7B9B8160BCD95005F602E /* OSResponse.m in Sources */,
 				42C9F7BE161E1A9300347D72 /* OSResultWrapper.m in Sources */,
+				42C4D312162C98CA00DC0BCB /* OSApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
