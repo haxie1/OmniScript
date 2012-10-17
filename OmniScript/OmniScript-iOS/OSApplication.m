@@ -7,14 +7,20 @@
 //
 
 #import "OSApplication.h"
-#import "OSMessenger.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+
+#import "OSMessenger.h"
+#import "OSResponse.h"
+#import "OSViewRequest.h"
+
 
 @interface OSApplication () <OSMessengerDelegate>
 @property (nonatomic, retain) OSMessenger *messenger;
 + (void)startOmniScriptSessionForCurrentApplication;
 - (id)initWithSessionName:(NSString *)sessionName;
+- (void)sendResponse:(OSResponse *)response;
+- (void)processRequest:(OSViewRequest *)request;
 @end
 
 @implementation OSApplication
@@ -28,10 +34,10 @@
     [[self class] startOmniScriptSessionWithSessionName:bundleName];
 }
 
-static char *kOSAppInstanceKey = "OSApplicationInstance";
+static char *kOSAppInstanceKey = "OSApplicationKey";
 + (void)startOmniScriptSessionWithSessionName:(NSString *)sessionName
 {
-    OSApplication *app = [[OSApplication alloc] initWithSessionName:sessionName];
+    OSApplication *app = [[[OSApplication alloc] initWithSessionName:sessionName] autorelease];
     UIApplication *appInstance = [UIApplication sharedApplication];
     objc_setAssociatedObject(appInstance, kOSAppInstanceKey, app, OBJC_ASSOCIATION_RETAIN);
 }
@@ -46,6 +52,7 @@ static char *kOSAppInstanceKey = "OSApplicationInstance";
     _messenger = [[OSMessenger alloc] init];
     _messenger.delegate = self;
     [_messenger publishServiceWithName:sessionName];
+    
     self.isPublished = NO;
     
     return self;
@@ -64,11 +71,28 @@ static char *kOSAppInstanceKey = "OSApplicationInstance";
     [self.messenger stop];
 }
 
+- (void)sendResponse:(OSResponse *)response
+{
+    NSData *responseData = [NSKeyedArchiver archivedDataWithRootObject:response];
+    [self.messenger sendData:responseData];
+}
+
+- (void)processRequest:(OSViewRequest *)request
+{
+    
+}
+
 #pragma mark - OSMessengerDelegate
 
 -(void)messenger:(OSMessenger *)messenger receivedData:(NSData *)data
 {
-    
+    id req = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if([req isKindOfClass:[OSViewRequest class]]) {
+        OSViewRequest *viewReq = (OSViewRequest *)req;
+        [self processRequest:viewReq];
+    } else {
+        // TODO: handle other request types
+    }
 }
 
 -(void)messengerPublishedSuccessfully:(OSMessenger *)messenger
@@ -79,11 +103,12 @@ static char *kOSAppInstanceKey = "OSApplicationInstance";
 -(void)messenger:(OSMessenger *)messenger failedToPublish:(NSError *)error
 {
     self.isPublished = NO;
+    NSLog(@"OSApplication failed to publish scripting session: %@", [error description]);
 }
 
 -(void)messenger:(OSMessenger *)messenger sentBytes:(NSNumber *)bytes
 {
-    
+    NSLog(@"sent bytes: %@", bytes);
 }
 
 @end
