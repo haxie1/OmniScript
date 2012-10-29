@@ -56,6 +56,9 @@
 		42BBFF3B163AF3CE001270B1 /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BBFF36163AF3A7001270B1 /* libKiwi-OSX.a */; };
 		42BBFF3C163AF3D3001270B1 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BBFF37163AF3A7001270B1 /* libKiwi.a */; };
 		42BBFF3D163AF3D3001270B1 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BBFF37163AF3A7001270B1 /* libKiwi.a */; };
+		42BBFF40163ED642001270B1 /* NSObject+OmniScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBFF3F163ED642001270B1 /* NSObject+OmniScriptSupport.m */; };
+		42BBFF5F163EECD5001270B1 /* OSViewTraversalSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBFF5E163EECD5001270B1 /* OSViewTraversalSpec.m */; };
+		42BBFF60163EECD5001270B1 /* OSViewTraversalSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBFF5E163EECD5001270B1 /* OSViewTraversalSpec.m */; };
 		42C4D312162C98CA00DC0BCB /* OSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D311162C98CA00DC0BCB /* OSApplication.m */; };
 		42C4D314162F66FA00DC0BCB /* OmniScriptSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C4D313162F66FA00DC0BCB /* OmniScriptSupport.h */; };
 		42C9F7B6161E1A5C00347D72 /* OSResultWrapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */; };
@@ -154,6 +157,9 @@
 		42BBFF281639E79B001270B1 /* UIView+OmniScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+OmniScriptSupport.m"; path = "Extensions/UIView+OmniScriptSupport.m"; sourceTree = "<group>"; };
 		42BBFF36163AF3A7001270B1 /* libKiwi-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libKiwi-OSX.a"; path = "/Users/Shared/kilodelta/Release/libKiwi-OSX.a"; sourceTree = "<absolute>"; };
 		42BBFF37163AF3A7001270B1 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "/Users/Shared/kilodelta/Release-iphoneos/libKiwi.a"; sourceTree = "<absolute>"; };
+		42BBFF3E163ED642001270B1 /* NSObject+OmniScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+OmniScriptSupport.h"; path = "Extensions/NSObject+OmniScriptSupport.h"; sourceTree = "<group>"; };
+		42BBFF3F163ED642001270B1 /* NSObject+OmniScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+OmniScriptSupport.m"; path = "Extensions/NSObject+OmniScriptSupport.m"; sourceTree = "<group>"; };
+		42BBFF5E163EECD5001270B1 /* OSViewTraversalSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewTraversalSpec.m; path = "Shared Tests/OSViewTraversalSpec.m"; sourceTree = "<group>"; };
 		42C4D310162C98CA00DC0BCB /* OSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSApplication.h; sourceTree = "<group>"; };
 		42C4D311162C98CA00DC0BCB /* OSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSApplication.m; sourceTree = "<group>"; };
 		42C4D313162F66FA00DC0BCB /* OmniScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OmniScriptSupport.h; path = Common/OmniScriptSupport.h; sourceTree = "<group>"; };
@@ -435,6 +441,7 @@
 				42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */,
 				42B7B9AF160BCD47005F602E /* OSResponseSpec.m */,
 				42C9F7B5161E1A5C00347D72 /* OSResultWrapperSpec.m */,
+				42BBFF5E163EECD5001270B1 /* OSViewTraversalSpec.m */,
 			);
 			name = "Shared Tests";
 			sourceTree = "<group>";
@@ -444,6 +451,8 @@
 			children = (
 				42BBFF271639E79B001270B1 /* UIView+OmniScriptSupport.h */,
 				42BBFF281639E79B001270B1 /* UIView+OmniScriptSupport.m */,
+				42BBFF3E163ED642001270B1 /* NSObject+OmniScriptSupport.h */,
+				42BBFF3F163ED642001270B1 /* NSObject+OmniScriptSupport.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -728,6 +737,7 @@
 				42C9F7BE161E1A9300347D72 /* OSResultWrapper.m in Sources */,
 				42C4D312162C98CA00DC0BCB /* OSApplication.m in Sources */,
 				42BBFF291639E79B001270B1 /* UIView+OmniScriptSupport.m in Sources */,
+				42BBFF40163ED642001270B1 /* NSObject+OmniScriptSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +749,7 @@
 				42A70D5415FFC97500B8D79B /* OSMessageSpec.m in Sources */,
 				42CDC9121603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
 				4228BBBD161221450083B1D3 /* OSResponseSpec.m in Sources */,
+				42BBFF5F163EECD5001270B1 /* OSViewTraversalSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +773,7 @@
 				42CDC9131603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */,
 				4228BBBF161221570083B1D3 /* OSResponseSpec.m in Sources */,
 				42C9F7B7161E1A5C00347D72 /* OSResultWrapperSpec.m in Sources */,
+				42BBFF60163EECD5001270B1 /* OSViewTraversalSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
