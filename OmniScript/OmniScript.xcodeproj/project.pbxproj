@@ -79,6 +79,9 @@
 		42CDC9121603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
 		42CDC9131603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
 		42CDC9141603F5C900EE1B08 /* OSViewRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */; };
+		42E0D5A8163EFDE200BEAACC /* OSViewTraversal.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E0D5A6163EFDE200BEAACC /* OSViewTraversal.h */; };
+		42E0D5A9163EFDE200BEAACC /* OSViewTraversal.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E0D5A7163EFDE200BEAACC /* OSViewTraversal.m */; };
+		42E0D5AA163EFDE200BEAACC /* OSViewTraversal.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E0D5A7163EFDE200BEAACC /* OSViewTraversal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,8 @@
 		42CDC9091603F5A200EE1B08 /* OSViewRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSViewRequest.h; path = Common/OSViewRequest.h; sourceTree = "<group>"; };
 		42CDC90A1603F5A200EE1B08 /* OSViewRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewRequest.m; path = Common/OSViewRequest.m; sourceTree = "<group>"; };
 		42CDC9111603F5C900EE1B08 /* OSViewRequestSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewRequestSpec.m; path = "Shared Tests/OSViewRequestSpec.m"; sourceTree = "<group>"; };
+		42E0D5A6163EFDE200BEAACC /* OSViewTraversal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSViewTraversal.h; path = Common/OSViewTraversal.h; sourceTree = "<group>"; };
+		42E0D5A7163EFDE200BEAACC /* OSViewTraversal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSViewTraversal.m; path = Common/OSViewTraversal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +466,8 @@
 			isa = PBXGroup;
 			children = (
 				42C4D313162F66FA00DC0BCB /* OmniScriptSupport.h */,
+				42E0D5A6163EFDE200BEAACC /* OSViewTraversal.h */,
+				42E0D5A7163EFDE200BEAACC /* OSViewTraversal.m */,
 			);
 			name = "Object Traversal";
 			sourceTree = "<group>";
@@ -478,6 +485,7 @@
 				42B7B9B6160BCD95005F602E /* OSResponse.h in Headers */,
 				42C9F7BC161E1A9300347D72 /* OSResultWrapper.h in Headers */,
 				42C4D314162F66FA00DC0BCB /* OmniScriptSupport.h in Headers */,
+				42E0D5A8163EFDE200BEAACC /* OSViewTraversal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +746,7 @@
 				42C4D312162C98CA00DC0BCB /* OSApplication.m in Sources */,
 				42BBFF291639E79B001270B1 /* UIView+OmniScriptSupport.m in Sources */,
 				42BBFF40163ED642001270B1 /* NSObject+OmniScriptSupport.m in Sources */,
+				42E0D5A9163EFDE200BEAACC /* OSViewTraversal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +771,7 @@
 				42CDC90E1603F5A200EE1B08 /* OSViewRequest.m in Sources */,
 				42B7B9B9160BCD95005F602E /* OSResponse.m in Sources */,
 				42C9F7BF161E1A9300347D72 /* OSResultWrapper.m in Sources */,
+				42E0D5AA163EFDE200BEAACC /* OSViewTraversal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

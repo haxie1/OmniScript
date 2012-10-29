@@ -1,12 +1,20 @@
 #import "Kiwi.h"
-#import "NSObject+OmniScriptSupport.h"
+#import "OSViewTraversal.h"
+#import <UIKit/UIKit.h>
 
 SPEC_BEGIN(OSViewTraversalSpec)
 describe(@"OSViewTraversal", ^{
-    it(@"should print out methods", ^{
-        NSString *str = @"foo";
-        NSArray *methods = [str propertyNames];
-        NSLog(@"method names: %@", methods);
+    it(@"should be initialized with a root object", ^{
+        UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+        OSViewTraversal *traversal = [[OSViewTraversal alloc] initWithRootView:v];
+        [[traversal.rootView shouldNot] beNil];
+    });
+    
+    it(@"should throw an exception if the root view doesn't conform to OmniScriptScriptingContainer protocol", ^{
+        NSObject *foo = [[NSObject alloc] init];
+        [[theBlock(^{
+            [[OSViewTraversal alloc] initWithRootView:foo];
+        }) should] raiseWithName:NSInternalInconsistencyException];
     });
 });
 SPEC_END
