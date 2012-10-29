@@ -9,5 +9,24 @@
 #import "UIView+OmniScriptSupport.h"
 
 @implementation UIView (OmniScriptSupport)
+- (id)omniScriptIdentifier
+{
+    return nil;
+}
 
+- (NSArray *)possibleOmniScriptIdentifiers
+{
+    return nil;
+}
+
+- (CGRect)omniScriptFrame
+{
+    return [self.window convertRect:self.frame fromView:self];
+}
+
+
+- (NSArray *)omniScriptChildren
+{
+    return self.subviews;
+}
 @end

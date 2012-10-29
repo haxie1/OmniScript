@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OmniScriptSupport.h"
 
-@interface UIView (OmniScriptSupport)
+@interface UIView (OmniScriptSupport) <OmniScriptScriptingContainer>
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-@protocol OmniScriptIdentificationProtocol <NSObject>
+@protocol OmniScriptIdentification <NSObject>
 - (id)omniScriptIdentifier;
 - (NSArray *)possibleOmniScriptIdentifiers;
+- (CGRect)omniScriptFrame; // return frame in screen coordindates.
 @end
 
-@protocol OmniScriptScriptingContainerProtocol <NSObject>
+@protocol OmniScriptScriptingContainer <OmniScriptIdentification>
 - (NSArray *)omniScriptChildren;
 @end
