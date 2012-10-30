@@ -42,7 +42,7 @@ static NSString *REQUEST_ID_KEY = @"requestID";
     }
     
     if(viewClass == nil) {
-        viewClass = @"view";
+       viewClass = @"view";
     }
     
     _viewClass = [viewClass copy];

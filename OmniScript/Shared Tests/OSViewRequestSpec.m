@@ -25,7 +25,12 @@ describe(@"OSViewRequest", ^{
         OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
         [[req.viewClass should] equal:@"view"];
     });
-    
+   
+    it(@"should set the view class if viewClass is nil", ^{
+        OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
+        [[req.viewClass shouldNot] beNil];
+    });
+   
     it(@"should generate a unique id", ^{
         OSViewRequest *req = [[OSViewRequest alloc] initWithViewClass:nil identifier:@"foo" usingMessageForIdentifier:nil];
         [[req.requestID shouldNot] beNil];
@@ -58,7 +63,6 @@ describe(@"OSViewRequest", ^{
             it(@"should allow searching by idendifier only", ^{
                 OSViewRequest *usingIDReq = [req findIdentifer:@"bar"];
                 [[usingIDReq.request shouldNot] beNil];
-                [[usingIDReq.request.viewClass should] equal:@"view"];
                 [[usingIDReq.request.identifier should] equal:@"bar"];
                 
             });

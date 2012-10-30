@@ -34,6 +34,7 @@
 
 - (void)dealloc
 {
+    _rootView = nil;
     [super dealloc];
 }
 
