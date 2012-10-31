@@ -1,6 +1,49 @@
 #import "Kiwi.h"
 #import "OSMessage.h"
 
+@interface TestClass : NSObject
+- (void)methodWithNoReturn;
+- (id)methodReturningObject;
+- (NSUInteger)methodReturningPrimitive;
+- (NSString *)methodTakingNumberReturningString:(NSNumber *)numb;
+- (NSNumber *)methodTakingPrimitive:(NSUInteger)number;
+- (NSArray *)methodTakingMultipleArguments:(NSString *)arg1 arg2:(NSNumber *)arg2 arg3:(NSArray *)arg3;
+
+@end
+
+@implementation TestClass
+- (void)methodWithNoReturn
+{
+    NSLog(@"called: %@", NSStringFromSelector(_cmd));
+}
+
+- (id)methodReturningObject
+{
+    return @"foo";
+}
+
+- (NSUInteger)methodReturningPrimitive
+{
+    return 10;
+}
+
+- (NSString *)methodTakingNumberReturningString:(NSNumber *)numb
+{
+    return [numb stringValue];
+}
+
+- (NSNumber *)methodTakingPrimitive:(NSUInteger)number
+{
+    return [NSNumber numberWithUnsignedInt:number];
+}
+
+- (NSArray *)methodTakingMultipleArguments:(NSString *)arg1 arg2:(NSNumber *)arg2 arg3:(NSArray *)arg3
+{
+    
+    return [NSArray arrayWithObjects:arg1, arg2, arg3, nil];
+}
+@end
+
 @interface OSMessage (Testing)
 @property (nonatomic, assign) OSMessage *parentMessage;
 @end
@@ -127,6 +170,48 @@ describe(@"OSMessage", ^{
             [[decodedMessage.subMessage.selectorName should] equal:message.subMessage.selectorName];
             
         });
+    });
+    
+    context(@"when calling messages on a target", ^{
+        __block TestClass *testCls = nil;
+        beforeAll(^{
+            testCls = [[TestClass alloc] init];
+        });
+    
+        it(@"should invoke the message on a given target object", ^{
+            OSMessage *m = [[OSMessage alloc] initWithSelectorName:@"methodWithNoReturn" arguments:nil];
+            [[testCls should] receive:@selector(methodWithNoReturn)];
+            [m invokeMessageOnTarget:testCls];
+           
+        });
+        
+        it(@"should return an OSResultWrapper containing the result", ^{
+            OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"methodReturningObject" arguments:nil];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            [[wrapper shouldNot] beNil];
+            [[wrapper.result should] equal:[testCls methodReturningObject]];
+            [[theValue(wrapper.isObject) should] beTrue];
+        });
+        
+        it(@"should return an OSResultWrapper for messages taking an object argument", ^{
+            NSNumber *twenty = [NSNumber numberWithUnsignedInteger:20];
+            OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"methodTakingNumberReturningString:"
+                                                               arguments:[NSArray arrayWithObject:twenty]];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            [[wrapper.result should] equal:[testCls methodTakingNumberReturningString:twenty]];
+        });
+        
+        it(@"should return an OSResultWrapper for messages taking a primitive argument", ^{
+            OSMessage *message = [[OSMessage alloc] init];
+            message = [message methodTakingPrimitive:10];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            [[wrapper.result should] equal:[testCls methodTakingPrimitive:10]];
+        });
+        
+        it(@"should return errors by reference", ^{
+            
+        });
+        
     });
 });
 SPEC_END

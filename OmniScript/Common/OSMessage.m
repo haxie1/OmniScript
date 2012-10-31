@@ -8,7 +8,6 @@
 
 #import "OSMessage.h"
 
-
 @interface OSMessage ()
 @property (nonatomic, readwrite, retain) OSMessage *subMessage;
 @property (nonatomic, assign) OSMessage *parentMessage;
@@ -16,6 +15,7 @@
 
 - (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments subMessage:(OSMessage *)subMessage;
 - (id)messageFromKeyPath:(NSString *)keypath;
+- (NSInvocation *)invocationForTarget:(id)target;
 @end
 
 static NSString *SELECTOR_KEY = @"selectorName";
@@ -99,6 +99,66 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 - (SEL)selector
 {
     return NSSelectorFromString(self.selectorName);
+}
+
+#pragma mark - Message Resolution
+- (NSInvocation *)invocationForTarget:(id)target
+{
+    NSMethodSignature *sig = [target methodSignatureForSelector:[self selector]];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+    
+    for(NSUInteger i = 0; i < ([sig numberOfArguments] - 2); i++) {
+        id arg = [self.arguments objectAtIndex:i];
+        if([arg isKindOfClass:[NSData class]]) {
+            void *bytes = (void *)[(NSData *)arg bytes];
+            [invocation setArgument:bytes atIndex:(2 + i)];
+        
+        } else if([arg isKindOfClass:[NSNumber class]]) {
+            // pick of NSNumbers before we test for NSValues so that we pass the correct object to our method.
+            [invocation setArgument:&arg atIndex:(2 + i)];
+            
+        } else if([arg isKindOfClass:[NSValue class]]) {
+            void *bytes = NULL;
+            [(NSValue *)arg getValue:&bytes];
+            [invocation setArgument:bytes atIndex:(2 + i)];
+        
+        } else if([arg isKindOfClass:[NSObject class]]) {
+            [invocation setArgument:&arg atIndex:(2 + i)];
+        }
+    }
+    
+    [invocation setSelector:[self selector]];
+    return invocation;
+}
+
+- (OSResultWrapper *)invokeMessageOnTarget:(id)target
+{
+    NSInvocation *invo = [self invocationForTarget:target];
+    [invo invokeWithTarget:target];
+    
+    OSResultWrapper *result = [[OSResultWrapper alloc] init];
+    const char *returnType = [[invo methodSignature] methodReturnType];
+    
+    if(strcmp(returnType, "@") == 0) {
+        id methodResult = nil;
+        [invo getReturnValue:&methodResult];
+        [result setObjectResult:methodResult];
+        
+    } else {
+        // void return types need to be special cased so that NSInvocation doesn't barf when we try to get the invocation result.
+        if(strcmp(returnType, "v") == 0)
+        {
+            [result setNonObjectResult:NULL forObjcType:returnType];
+            
+        } else {
+            void *bytes = malloc([[invo methodSignature] methodReturnLength]);
+            [invo getReturnValue:&bytes];
+            [result setNonObjectResult:bytes forObjcType:returnType];
+            free(bytes);
+        }
+    }
+
+    return [result autorelease];
 }
 
 - (id)message:(NSString *)selectorName arguments:(NSArray *)args

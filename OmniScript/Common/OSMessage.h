@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSResultWrapper.h"
 
 @interface OSMessage : NSObject <NSCoding>
 @property (nonatomic, copy) NSString *selectorName;
@@ -19,6 +20,9 @@
 - (id)initWithKeyPath:(NSString *)keypath;
 
 - (SEL)selector;
+
+#pragma mark - Message Resolution
+- (OSResultWrapper *)invokeMessageOnTarget:(id)target;
 
 #pragma mark - Builder API
 - (id)message:(NSString *)selectorName arguments:(NSArray *)args;
