@@ -85,13 +85,24 @@
 #endif
 }
 
+// we can match a view
+// we can match a view and a scripting identifier
+// we can match a view using a custom message
 - (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req
 {
-    if([self viewClass:view matchesName:req.viewClass]) {
-        return YES;
+    // if we don't match the current view, bail
+    if(! [self viewClass:view matchesName:req.viewClass]) return NO;
+    
+    BOOL result = YES; // at this point we have a matching view so if nothing else changes we should return that we have a match
+    if(req.identifier) {
+        if([req.identifier isEqual:[view omniScriptIdentifier]]) {
+            result = YES;
+        } else {
+            result = NO;
+        }
     }
     
-    return NO;
+    return result;
 }
 
 - (BOOL)viewClass:(id)view matchesName:(NSString *)searchName;

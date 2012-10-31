@@ -84,9 +84,27 @@ describe(@"OSViewTraversal", ^{
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[FooBarView class]];
             });
-
         });
-                
+        
+        context(@"when finding views with the omniScriptIdentifier", ^{
+            it(@"should find the view that matches the identifier", ^{
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"testview1"];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [[result shouldNot] beNil];
+                [[result should] beKindOfClass:[TestView class]];
+
+            });
+            
+            it(@"should return nil when a view with the given omniScriptIdentifier can't be found", ^{
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"bogusid"];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [result shouldBeNil];
+            });
+        });
     });
 });
 SPEC_END
