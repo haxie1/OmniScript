@@ -15,6 +15,7 @@
 - (NSString *)viewClassForCurrentSystem;
 - (BOOL)viewClass:(id)view matchesName:(NSString *)searchName;
 - (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req;
+- (id)executeMessage:(OSMessage *)message onView:(id)view;
 @end
 
 @implementation OSViewTraversal
@@ -97,6 +98,8 @@
     if(req.identifier) {
         if([req.identifier isEqual:[view omniScriptIdentifier]]) {
             result = YES;
+        } else if([req.identifier isEqual:[self executeMessage:req.identifierMessage onView:view]]) {
+            result = YES;
         } else {
             result = NO;
         }
@@ -110,5 +113,15 @@
     NSString *classStr = NSStringFromClass([view class]);
     NSRange matchRange = [classStr rangeOfString:searchName options:(NSRegularExpressionSearch | NSCaseInsensitiveSearch)];
     return (NSEqualRanges(matchRange, NSMakeRange(NSNotFound, 0)) ? NO : YES);
+}
+
+- (id)executeMessage:(OSMessage *)message onView:(id)view
+{
+    // TODO:
+    // need to rethink this a bit... probably best to have OSMessage generate the invocation neccessary
+    // then ask it for the invocation and call it on the view. to do that, we need to change some things in OSMessage
+    // namely, getting the methodsig for the selector and using it to resolve the actual message args.
+    // lets not do this tonight :)
+    return nil;
 }
 @end

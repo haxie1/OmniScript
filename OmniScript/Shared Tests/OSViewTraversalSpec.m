@@ -10,6 +10,11 @@
 {
     return @"testview1";
 }
+
+- (NSString *)customMessage
+{
+    return @"booya";
+}
 @end
 
 @interface FooBarView : UIView
@@ -103,6 +108,18 @@ describe(@"OSViewTraversal", ^{
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
                 id result = [traveral findViewWithRequst:req];
                 [result shouldBeNil];
+            });
+        });
+        
+        context(@"when finding views with a custom message", ^{
+            it(@"should find the view that matches the result from a given message", ^{
+                OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"customMessage" arguments:nil];
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifier:@"booya" usingMessageForIdentifier:message];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [[result shouldNot] beNil];
+                [[result should] beKindOfClass:[TestView class]];
             });
         });
     });
