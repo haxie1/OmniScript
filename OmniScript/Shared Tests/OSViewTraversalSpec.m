@@ -58,6 +58,15 @@ describe(@"OSViewTraversal", ^{
         });
         
         context(@"when finding views by class name", ^{
+            
+            it(@"should return nil if the target view can't be found", ^{
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"BogusView"];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [result shouldBeNil];
+            });
+            
             it(@"should find a child view of the root view", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"testview"];
