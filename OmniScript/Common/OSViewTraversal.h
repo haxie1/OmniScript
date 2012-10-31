@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSViewRequest.h"
 
 @interface OSViewTraversal : NSObject
 @property (nonatomic, readonly) id rootView;
 
 - (id)initWithRootView:(id)view;
+
+- (id)findViewWithRequst:(OSViewRequest *)request;
 @end

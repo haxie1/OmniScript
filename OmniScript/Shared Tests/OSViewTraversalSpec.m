@@ -2,6 +2,26 @@
 #import "OSViewTraversal.h"
 #import <UIKit/UIKit.h>
 
+@interface TestView : UIView
+@end
+
+@implementation TestView
+- (id)omniScriptIdentifier
+{
+    return @"testview1";
+}
+@end
+
+@interface FooBarView : UIView
+@end
+
+@implementation FooBarView
+- (id)omniScriptIdentifier
+{
+    return @"foobarview";
+}
+@end
+
 SPEC_BEGIN(OSViewTraversalSpec)
 describe(@"OSViewTraversal", ^{
     it(@"should be initialized with a root object", ^{
@@ -15,6 +35,49 @@ describe(@"OSViewTraversal", ^{
         [[theBlock(^{
             [[OSViewTraversal alloc] initWithRootView:foo];
         }) should] raiseWithName:NSInternalInconsistencyException];
+    });
+    
+    context(@"when finding views", ^{
+        __block UIView *root = nil;
+        beforeAll(^{
+            root = [[UIView alloc] initWithFrame:CGRectZero];
+            for(NSUInteger i = 0; i < 5; i++) {
+                UIView *subView = [[UIView alloc] initWithFrame:CGRectZero];
+                [root addSubview:subView];
+                [subView release];
+            }
+            
+            TestView *testView = [[TestView alloc] initWithFrame:CGRectZero];
+            FooBarView *fooBarView = [[FooBarView alloc] initWithFrame:CGRectZero];
+            
+            [[[root subviews] objectAtIndex:3] addSubview:testView];
+            
+            [testView addSubview:fooBarView];
+            [testView release];
+            [fooBarView release];
+        });
+        
+        context(@"when finding views by class name", ^{
+            it(@"should find a child view of the root view", ^{
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"testview"];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [[result shouldNot] beNil];
+                [[result should] beKindOfClass:[TestView class]];
+            });
+            
+            it(@"should find child views regardless of name format", ^{
+                OSViewRequest *req = [[OSViewRequest alloc] init];
+                req = [[req findViewClass:@"view"] findViewClass:@"FOoBarVIEW"];
+                OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                id result = [traveral findViewWithRequst:req];
+                [[result shouldNot] beNil];
+                [[result should] beKindOfClass:[FooBarView class]];
+            });
+
+        });
+                
     });
 });
 SPEC_END

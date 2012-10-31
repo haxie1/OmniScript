@@ -67,6 +67,11 @@ static NSString *REQUEST_ID_KEY = @"requestID";
     return self;
 }
 
+- (id)init
+{
+    return [self initWithViewClass:nil identifier:nil usingMessageForIdentifier:nil subViewRequest:nil requestID:nil];
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     NSString *viewClass = [aDecoder decodeObjectForKey:VIEW_CLASS_KEY];
