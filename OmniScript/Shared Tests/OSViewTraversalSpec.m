@@ -112,7 +112,7 @@ describe(@"OSViewTraversal", ^{
         });
         
         context(@"when finding views with a custom message", ^{
-            /*
+            
             it(@"should find the view that matches the result from a given message", ^{
                 OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"customMessage" arguments:nil];
                 OSViewRequest *req = [[OSViewRequest alloc] init];
@@ -122,7 +122,7 @@ describe(@"OSViewTraversal", ^{
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[TestView class]];
             });
-             */
+             
         });
     });
 });

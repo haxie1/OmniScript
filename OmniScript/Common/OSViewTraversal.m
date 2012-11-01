@@ -117,11 +117,13 @@
 
 - (id)executeMessage:(OSMessage *)message onView:(id)view
 {
-    // TODO:
-    // need to rethink this a bit... probably best to have OSMessage generate the invocation neccessary
-    // then ask it for the invocation and call it on the view. to do that, we need to change some things in OSMessage
-    // namely, getting the methodsig for the selector and using it to resolve the actual message args.
-    // lets not do this tonight :)
-    return nil;
+    NSError *error = nil;
+    OSResultWrapper *wrappedResult = [message invokeMessageOnTarget:view error:&error];
+    if(! wrappedResult) {
+        NSLog(@"failed to execute message on view: %@ because: %@", [view class], error);
+        return nil;
+    }
+    
+    return wrappedResult.result;
 }
 @end
