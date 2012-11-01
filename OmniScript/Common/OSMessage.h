@@ -22,7 +22,7 @@
 - (SEL)selector;
 
 #pragma mark - Message Resolution
-- (OSResultWrapper *)invokeMessageOnTarget:(id)target;
+- (OSResultWrapper *)invokeMessageOnTarget:(id)target error:(NSError **)error;
 
 #pragma mark - Builder API
 - (id)message:(NSString *)selectorName arguments:(NSArray *)args;

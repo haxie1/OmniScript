@@ -16,6 +16,7 @@
 - (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments subMessage:(OSMessage *)subMessage;
 - (id)messageFromKeyPath:(NSString *)keypath;
 - (NSInvocation *)invocationForTarget:(id)target;
+- (id)processMessageOnTarget:(id)target error:(NSError **)error;
 @end
 
 static NSString *SELECTOR_KEY = @"selectorName";
@@ -105,25 +106,38 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 - (NSInvocation *)invocationForTarget:(id)target
 {
     NSMethodSignature *sig = [target methodSignatureForSelector:[self selector]];
+    if(! sig) {
+        [target doesNotRecognizeSelector:[self selector]];
+        return nil;
+    }
+    
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
     
     for(NSUInteger i = 0; i < ([sig numberOfArguments] - 2); i++) {
+        NSUInteger offset = (2 + i);
         id arg = [self.arguments objectAtIndex:i];
         if([arg isKindOfClass:[NSData class]]) {
             void *bytes = (void *)[(NSData *)arg bytes];
-            [invocation setArgument:bytes atIndex:(2 + i)];
+            [invocation setArgument:bytes atIndex:offset];
         
         } else if([arg isKindOfClass:[NSNumber class]]) {
             // pick of NSNumbers before we test for NSValues so that we pass the correct object to our method.
-            [invocation setArgument:&arg atIndex:(2 + i)];
+            [invocation setArgument:&arg atIndex:offset];
             
         } else if([arg isKindOfClass:[NSValue class]]) {
             void *bytes = NULL;
             [(NSValue *)arg getValue:&bytes];
-            [invocation setArgument:bytes atIndex:(2 + i)];
+            [invocation setArgument:bytes atIndex:offset];
         
         } else if([arg isKindOfClass:[NSObject class]]) {
-            [invocation setArgument:&arg atIndex:(2 + i)];
+            [invocation setArgument:&arg atIndex:offset];
+            
+        } else {
+            [NSException raise:NSInvalidArgumentException
+                        format:@"-[%@ %@] expected argument of type: %s but got: %@", NSStringFromClass([target class]),
+                                                                                      self.selectorName,
+                                                                                      [sig getArgumentTypeAtIndex:offset],
+                                                                                        arg];
         }
     }
     
@@ -131,34 +145,70 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
     return invocation;
 }
 
-- (OSResultWrapper *)invokeMessageOnTarget:(id)target
+// OSMessage can be a bunch of nested messages, so we need to process each message starting from the root and working down
+// the result of each message should be the target for the that messages submessage
+// only when we hit our final message (a message taht doesn't have a submessage) do we wrap up the result and return it.
+- (id)processMessageOnTarget:(id)target error:(NSError **)error
 {
-    NSInvocation *invo = [self invocationForTarget:target];
-    [invo invokeWithTarget:target];
     
-    OSResultWrapper *result = [[OSResultWrapper alloc] init];
-    const char *returnType = [[invo methodSignature] methodReturnType];
+    NSInvocation *currentInvocation = nil;
+    @try {
+        // we don't want to throw the exception on the target, instead, lets return an error to the client
+        currentInvocation = [self invocationForTarget:target];
+        [currentInvocation invokeWithTarget:target];
+    }
+    @catch (NSException *exception) {
+        NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:exception.reason,
+                                   NSLocalizedFailureReasonErrorKey,
+                                   exception.userInfo,
+                                   @"OSMessageExceptionInfoKey", nil];
+        *error = [NSError errorWithDomain:exception.name code:1000 userInfo:errorDict];
+        return nil;
+    }
     
+    const char *returnType = [[currentInvocation methodSignature] methodReturnType];
+    OSResultWrapper *wrapper = nil;
     if(strcmp(returnType, "@") == 0) {
-        id methodResult = nil;
-        [invo getReturnValue:&methodResult];
-        [result setObjectResult:methodResult];
+        /*
+            ATM we are sorta saving the user from themselves. If they were to build a method chain that called a method on a primitive, we don't really let that happen
+            it might be a better idea to just let them fail here by not checking we have an object to call our submessage on?
+         */
+        id result = nil;
+        [currentInvocation getReturnValue:&result];
+        if(self.subMessage) {
+            return [self.subMessage processMessageOnTarget:result error:error];
+        }
+        
+        wrapper = [[OSResultWrapper alloc] init];
+        [wrapper setObjectResult:result];
         
     } else {
-        // void return types need to be special cased so that NSInvocation doesn't barf when we try to get the invocation result.
+        wrapper = [[OSResultWrapper alloc] init];
+        
         if(strcmp(returnType, "v") == 0)
         {
-            [result setNonObjectResult:NULL forObjcType:returnType];
+            [wrapper setNonObjectResult:NULL forObjcType:returnType];
             
         } else {
-            void *bytes = malloc([[invo methodSignature] methodReturnLength]);
-            [invo getReturnValue:&bytes];
-            [result setNonObjectResult:bytes forObjcType:returnType];
+            void *bytes = malloc([[currentInvocation methodSignature] methodReturnLength]);
+            [currentInvocation getReturnValue:&bytes];
+            [wrapper setNonObjectResult:bytes forObjcType:returnType];
             free(bytes);
         }
     }
+    
+    NSLog(@"----- > returning wrapper");
+    return [wrapper autorelease];
+    
+}
 
-    return [result autorelease];
+- (OSResultWrapper *)invokeMessageOnTarget:(id)target error:(NSError **)error
+{
+    OSResultWrapper *wrapper = [self processMessageOnTarget:target error:error];
+    if(! wrapper) {
+        return nil;
+    }
+    return wrapper;
 }
 
 - (id)message:(NSString *)selectorName arguments:(NSArray *)args

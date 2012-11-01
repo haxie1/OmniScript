@@ -1,7 +1,21 @@
 #import "Kiwi.h"
 #import "OSMessage.h"
 
+@interface SubtestClass : NSObject
+- (NSString *)subTestMethod;
+@end
+
+@implementation SubtestClass
+
+- (NSString *)subTestMethod
+{
+    return @"subtestmethod";
+}
+@end
+
 @interface TestClass : NSObject
+@property (nonatomic, readonly, retain) SubtestClass *subTest;
+
 - (void)methodWithNoReturn;
 - (id)methodReturningObject;
 - (NSUInteger)methodReturningPrimitive;
@@ -12,6 +26,23 @@
 @end
 
 @implementation TestClass
+@synthesize subTest = _subTest;
+
+- (id)init
+{
+    if(! (self = [super init])) {
+        return nil;
+    }
+    _subTest = [[SubtestClass alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    [_subTest release];
+    [super dealloc];
+}
+
 - (void)methodWithNoReturn
 {
     NSLog(@"called: %@", NSStringFromSelector(_cmd));
@@ -181,13 +212,13 @@ describe(@"OSMessage", ^{
         it(@"should invoke the message on a given target object", ^{
             OSMessage *m = [[OSMessage alloc] initWithSelectorName:@"methodWithNoReturn" arguments:nil];
             [[testCls should] receive:@selector(methodWithNoReturn)];
-            [m invokeMessageOnTarget:testCls];
+            [m invokeMessageOnTarget:testCls error:NULL];
            
         });
         
         it(@"should return an OSResultWrapper containing the result", ^{
             OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"methodReturningObject" arguments:nil];
-            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:NULL];
             [[wrapper shouldNot] beNil];
             [[wrapper.result should] equal:[testCls methodReturningObject]];
             [[theValue(wrapper.isObject) should] beTrue];
@@ -197,19 +228,47 @@ describe(@"OSMessage", ^{
             NSNumber *twenty = [NSNumber numberWithUnsignedInteger:20];
             OSMessage *message = [[OSMessage alloc] initWithSelectorName:@"methodTakingNumberReturningString:"
                                                                arguments:[NSArray arrayWithObject:twenty]];
-            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:NULL];
             [[wrapper.result should] equal:[testCls methodTakingNumberReturningString:twenty]];
         });
         
         it(@"should return an OSResultWrapper for messages taking a primitive argument", ^{
             OSMessage *message = [[OSMessage alloc] init];
             message = [message methodTakingPrimitive:10];
-            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:NULL];
             [[wrapper.result should] equal:[testCls methodTakingPrimitive:10]];
         });
         
-        it(@"should return errors by reference", ^{
+        it(@"should return the result of calling a message chain", ^{
+            OSMessage *message = [[OSMessage alloc] initWithSelector:@selector(subTest) arguments:nil];
+            message = [message message:@"subTestMethod" arguments:nil];
+            OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:NULL];
+            [[wrapper.result should] equal:[testCls.subTest subTestMethod]];
+        });
+        
+        context(@"when errors occur", ^{
+            it(@"should set the result to nil", ^{
+                NSError *error = nil;
+                OSMessage *message = [[OSMessage alloc] initWithSelector:@selector(subTest) arguments:nil];
+                message = [message message:@"bogusMethod" arguments:nil];
+                OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:&error];
+                [wrapper shouldBeNil];
+            });
             
+            it(@"should return an error for bad method name", ^{
+                NSError *error = nil;
+                OSMessage *message = [[OSMessage alloc] initWithSelector:@selector(subTest) arguments:nil];
+                message = [message message:@"bogusMethod" arguments:nil];
+                OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:&error];
+                [[error shouldNot] beNil];
+            });
+            
+            it(@"should return error for missing argument", ^{
+                NSError *error = nil;
+                OSMessage *message = [[OSMessage alloc] initWithSelector:@selector(methodTakingPrimitive:) arguments:nil];
+                OSResultWrapper *wrapper = [message invokeMessageOnTarget:testCls error:&error];
+                [[error shouldNot] beNil];
+            });
         });
         
     });
