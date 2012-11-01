@@ -77,7 +77,6 @@
         }
     }
     
-    
     id resultView = nil;
     for(id child in [view omniScriptChildren]) {
         resultView = [self findWithRequest:currentRequest startingFromView:child error:error];
