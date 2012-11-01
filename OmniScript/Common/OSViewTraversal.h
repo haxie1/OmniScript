@@ -14,5 +14,5 @@
 
 - (id)initWithRootView:(id)view;
 
-- (id)findViewWithRequst:(OSViewRequest *)request;
+- (id)findViewWithRequst:(OSViewRequest *)request error:(NSError **)error;
 @end

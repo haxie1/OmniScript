@@ -11,11 +11,11 @@
 
 @interface OSViewTraversal ()
 @property (nonatomic, readwrite) id rootView;
-- (id)findWithRequest:(OSViewRequest *)currentRequest startingFromView:(id)view;
+- (id)findWithRequest:(OSViewRequest *)currentRequest startingFromView:(id)view error:(NSError **)error;
 - (NSString *)viewClassForCurrentSystem;
 - (BOOL)viewClass:(id)view matchesName:(NSString *)searchName;
-- (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req;
-- (id)executeMessage:(OSMessage *)message onView:(id)view;
+- (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req error:(NSError **)error;
+- (id)executeMessage:(OSMessage *)message onView:(id)view error:(NSError **)error;
 @end
 
 @implementation OSViewTraversal
@@ -43,13 +43,13 @@
     [super dealloc];
 }
 
-- (id)findViewWithRequst:(OSViewRequest *)request
+- (id)findViewWithRequst:(OSViewRequest *)request error:(NSError **)error;
 {
-    id foundView = [self findWithRequest:request startingFromView:self.rootView];
+    id foundView = [self findWithRequest:request startingFromView:self.rootView error:error];
     return foundView;
 }
 
-- (id)findWithRequest:(OSViewRequest *)request startingFromView:(id)view
+- (id)findWithRequest:(OSViewRequest *)request startingFromView:(id)view error:(NSError **)error
 {
     OSViewRequest *currentRequest = request;
     
@@ -58,17 +58,29 @@
         targetViewClass = [self viewClassForCurrentSystem];
     }
     
-    if([self view:view matchesRequest:currentRequest]) {
+    NSError *matchError = nil;
+    if([self view:view matchesRequest:currentRequest error:&matchError]) {
         if(request.request == nil) {
             NSLog(@"we got a match: %@", [view class]);
             return view;
         }
         currentRequest = request.request;
+        
+    } else {
+        if(error) {
+            // if we have an error than it means it is fatal to our search
+            // so set the error ref and bail.
+            if(matchError) {
+                *error = matchError;
+                return nil;
+            }
+        }
     }
+    
     
     id resultView = nil;
     for(id child in [view omniScriptChildren]) {
-        resultView = [self findWithRequest:currentRequest startingFromView:child];
+        resultView = [self findWithRequest:currentRequest startingFromView:child error:error];
         if(resultView) {
             return resultView;
         }
@@ -89,18 +101,38 @@
 // we can match a view
 // we can match a view and a scripting identifier
 // we can match a view using a custom message
-- (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req
+- (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req error:(NSError **)error
 {
     // if we don't match the current view, bail
-    if(! [self viewClass:view matchesName:req.viewClass]) return NO;
+    // if this is our last request, then we never found the view, so create an error
+    if(! [self viewClass:view matchesName:req.viewClass])
+    {
+        if(req.request == nil) {
+            if(error) {
+                NSString *reason = [NSString stringWithFormat:@"Couldn't find view: %@", req.viewClass];
+                NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:reason, NSLocalizedFailureReasonErrorKey, nil];
+                *error = [NSError errorWithDomain:@"OSViewRequestViewNotFound" code:1001 userInfo:dict];
+            }
+        }
+        return NO;
+    }
+        
     
     BOOL result = YES; // at this point we have a matching view so if nothing else changes we should return that we have a match
     if(req.identifier) {
-        if([req.identifier isEqual:[view omniScriptIdentifier]]) {
-            result = YES;
-        } else if([req.identifier isEqual:[self executeMessage:req.identifierMessage onView:view]]) {
+        NSError *messageError = nil;
+        if([req.identifier isEqual:[self executeMessage:req.identifierMessage onView:view error:&messageError]]) {
             result = YES;
         } else {
+            if(error) {
+                if(messageError) {
+                   *error = messageError; 
+                } else {
+                    NSString *reason = [NSString stringWithFormat:@"Failed to find view with identifier: %@ - using message: %@", req.identifier, [req.identifierMessage selectorName]];
+                   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:reason, NSLocalizedFailureReasonErrorKey, nil];
+                    *error = [NSError errorWithDomain:@"OSViewRequestViewNotFound" code:1001 userInfo:dict];
+                }
+            }
             result = NO;
         }
     }
@@ -115,12 +147,11 @@
     return (NSEqualRanges(matchRange, NSMakeRange(NSNotFound, 0)) ? NO : YES);
 }
 
-- (id)executeMessage:(OSMessage *)message onView:(id)view
+- (id)executeMessage:(OSMessage *)message onView:(id)view error:(NSError **)error;
 {
-    NSError *error = nil;
-    OSResultWrapper *wrappedResult = [message invokeMessageOnTarget:view error:&error];
+    OSResultWrapper *wrappedResult = [message invokeMessageOnTarget:view error:error];
     if(! wrappedResult) {
-        NSLog(@"failed to execute message on view: %@ because: %@", [view class], error);
+        NSLog(@"failed to execute message on view: %@ because: %@", [view class], *error);
         return nil;
     }
     

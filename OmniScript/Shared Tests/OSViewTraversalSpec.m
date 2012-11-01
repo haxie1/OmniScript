@@ -68,7 +68,7 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"BogusView"];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [result shouldBeNil];
             });
             
@@ -76,7 +76,7 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"testview"];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[TestView class]];
             });
@@ -85,7 +85,7 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"FOoBarVIEW"];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[FooBarView class]];
             });
@@ -96,7 +96,7 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"testview1"];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[TestView class]];
 
@@ -106,7 +106,7 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"bogusid"];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [result shouldBeNil];
             });
         });
@@ -118,11 +118,31 @@ describe(@"OSViewTraversal", ^{
                 OSViewRequest *req = [[OSViewRequest alloc] init];
                 req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifier:@"booya" usingMessageForIdentifier:message];
                 OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
-                id result = [traveral findViewWithRequst:req];
+                id result = [traveral findViewWithRequst:req error:NULL];
                 [[result shouldNot] beNil];
                 [[result should] beKindOfClass:[TestView class]];
             });
              
+        });
+        
+        it(@"should return an error by reference when a view can't be found", ^{
+            OSViewRequest *req = [[OSViewRequest alloc] init];
+            req = [[req findViewClass:@"view"] findViewClass:@"BogusView"];
+            OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+            NSError *error = nil;
+            id result = [traveral findViewWithRequst:req error:&error];
+            [result shouldBeNil];
+            [error shouldNotBeNil];
+        });
+        
+        it(@"should return an error by reference when a view can't be found using a message", ^{
+            OSViewRequest *req = [[OSViewRequest alloc] init];
+            req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"bogusid"];
+            OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+            NSError *error = nil;
+            id result = [traveral findViewWithRequst:req error:&error];
+            [result shouldBeNil];
+            [error shouldNotBeNil];
         });
     });
 });
