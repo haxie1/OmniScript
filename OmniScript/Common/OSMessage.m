@@ -11,7 +11,6 @@
 @interface OSMessage ()
 @property (nonatomic, readwrite, retain) OSMessage *subMessage;
 @property (nonatomic, assign) OSMessage *parentMessage;
-@property (nonatomic, assign) BOOL resolveMessage;
 
 - (id)initWithSelectorName:(NSString *)string arguments:(NSArray *)arguments subMessage:(OSMessage *)subMessage;
 - (id)messageFromKeyPath:(NSString *)keypath;
@@ -28,7 +27,6 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
 @synthesize arguments = _arguments;
 @synthesize subMessage = _subMessage;
 @synthesize parentMessage = _parentMessage;
-@synthesize resolveMessage = _resolveMessage;
 
 - (id)initWithSelector:(SEL)selector arguments:(NSArray *)arguments
 {
@@ -197,9 +195,7 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
         }
     }
     
-    NSLog(@"----- > returning wrapper");
     return [wrapper autorelease];
-    
 }
 
 - (OSResultWrapper *)invokeMessageOnTarget:(id)target error:(NSError **)error
@@ -246,10 +242,6 @@ static NSString *SUBMESSAGE_KEY = @"subMessage";
     for(NSUInteger i = 0; i < count; i++) {
         [baseSig appendString:@"@"];
     }
-    
-    // we will need to unpack our arguments on the server once we can get the real method signature
-    // this flag will let our server side operation know to do that work.
-    self.resolveMessage = YES;
     
     return [NSMethodSignature signatureWithObjCTypes:[baseSig UTF8String]];
 }

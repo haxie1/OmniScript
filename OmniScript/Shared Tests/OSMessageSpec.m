@@ -170,11 +170,6 @@ describe(@"OSMessage", ^{
                 [[message.arguments should] haveCountOf:1];
             });
             
-            it(@"should hint that the selector needs to be resolved", ^{
-                OSMessage *message = [[OSMessage alloc] init];
-                message = [message madeUpMethod:@"foo"];
-                [[theValue(message.resolveMessage) should] beTrue];
-            });
         });
     
     });
