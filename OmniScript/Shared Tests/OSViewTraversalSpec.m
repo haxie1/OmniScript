@@ -3,17 +3,38 @@
 #import <UIKit/UIKit.h>
 
 @interface TestView : UIView
+@property (nonatomic, retain) NSString *identStr;
 @end
 
 @implementation TestView
+@synthesize identStr = _identStr;
+
+-(void)dealloc
+{
+    [_identStr release];
+    [super dealloc];
+}
+
 - (id)omniScriptIdentifier
 {
-    return @"testview1";
+    return self.identStr;
 }
 
 - (NSString *)customMessage
 {
     return @"booya";
+}
+@end
+
+@interface SubTestView : UIView
+
+@end
+
+@implementation SubTestView
+
+- (id)omniScriptIdentifier
+{
+    return @"subTestView";
 }
 @end
 
@@ -53,11 +74,25 @@ describe(@"OSViewTraversal", ^{
             }
             
             TestView *testView = [[TestView alloc] initWithFrame:CGRectZero];
+            testView.identStr = @"testview1";
             FooBarView *fooBarView = [[FooBarView alloc] initWithFrame:CGRectZero];
+            [testView addSubview:fooBarView];
             
             [[[root subviews] objectAtIndex:3] addSubview:testView];
+            UIView *subRoot = [[root subviews] objectAtIndex:2];
+            SubTestView *sv = [[SubTestView alloc] initWithFrame:CGRectZero];
+            for(NSUInteger i = 0; i < 5; i++) {
+                TestView *tv = [[TestView alloc] init];
+                tv.identStr = [NSString stringWithFormat:@"viewid%d", i];
+                if([tv.identStr isEqualToString:@"viewid3"]) {
+                    [tv addSubview:sv];
+                }
+                
+                [subRoot addSubview:tv];
+                [tv release];
+            }
             
-            [testView addSubview:fooBarView];
+            [sv release];
             [testView release];
             [fooBarView release];
         });
@@ -109,6 +144,30 @@ describe(@"OSViewTraversal", ^{
                 id result = [traveral findViewWithRequst:req error:NULL];
                 [result shouldBeNil];
             });
+            
+            context(@"when multiples of the same view are found", ^{
+                it(@"should find a view with a specific omniScriptIdentifier", ^{
+                    OSViewRequest *req = [[OSViewRequest alloc] init];
+                    req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"viewid2"];
+                    OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                    id result = [traveral findViewWithRequst:req error:NULL];
+                    [[result shouldNot] beNil];
+                    [[result should] beKindOfClass:[TestView class]];;
+                    [[[result omniScriptIdentifier] should] equal:@"viewid2"];
+                });
+                
+                it(@"should find a view in the path with a specific omniscriptIdentifier", ^{
+                    OSViewRequest *req = [[OSViewRequest alloc] init];
+                    req = [[[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"viewid3"] findViewClass:@"subTestView" withIdentifer:@"subTestView"];
+                    OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+                    id result = [traveral findViewWithRequst:req error:NULL];
+                    [[result shouldNot] beNil];
+                    [[result should] beKindOfClass:[SubTestView class]];;
+                    [[[result omniScriptIdentifier] should] equal:@"subTestView"];
+                    NSLog(@"----> result id: %@", [result omniScriptIdentifier]);
+                });
+            });
+            
         });
         
         context(@"when finding views with a custom message", ^{
@@ -137,7 +196,8 @@ describe(@"OSViewTraversal", ^{
         
         it(@"should return an error by reference when a view can't be found using a message", ^{
             OSViewRequest *req = [[OSViewRequest alloc] init];
-            req = [[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"bogusid"];
+            req = [[[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"viewid"]
+                                                findViewClass:@"subTestView" withIdentifer:@"subTestView"];
             OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
             NSError *error = nil;
             id result = [traveral findViewWithRequst:req error:&error];
