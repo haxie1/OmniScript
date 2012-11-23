@@ -194,6 +194,16 @@ describe(@"OSViewTraversal", ^{
             [error shouldNotBeNil];
         });
         
+        it(@"should return an error when a view in the chain can't be found", ^{
+            OSViewRequest *req = [[OSViewRequest alloc] init];
+            req = [[[req findViewClass:@"view"] findViewClass:@"BogusView"] findViewClass:@"TestView"];
+            OSViewTraversal *traveral = [[OSViewTraversal alloc] initWithRootView:root];
+            NSError *error = nil;
+            id result = [traveral findViewWithRequst:req error:&error];
+            [result shouldBeNil];
+            [error shouldNotBeNil];
+        });
+        
         it(@"should return an error by reference when a view can't be found using a message", ^{
             OSViewRequest *req = [[OSViewRequest alloc] init];
             req = [[[req findViewClass:@"view"] findViewClass:@"testView" withIdentifer:@"viewid"]

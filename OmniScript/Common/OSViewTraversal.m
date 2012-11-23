@@ -68,7 +68,7 @@
         
     } else {
         if(error) {
-            // if we have an error than it means it is fatal to our search
+            // if we have an error then it means it is fatal to our search
             // so set the error ref and bail.
             if(matchError) {
                 *error = matchError;
@@ -85,6 +85,11 @@
         }
     }
     
+   
+    NSLog(@"----");
+    NSLog(@"-----> view: %@ - %@", request.request.viewClass, currentRequest.viewClass);
+    NSLog(@"----");
+    
     return nil;
 }
 
@@ -100,10 +105,13 @@
 // we can match a view
 // we can match a view and a scripting identifier
 // we can match a view using a custom message
+
 - (BOOL)view:(id)view matchesRequest:(OSViewRequest *)req error:(NSError **)error
 {
     // if we don't match the current view, bail
     // if this is our last request, then we never found the view, so create an error
+    
+    // TODO: is this true? we may never find this view but we may still have nested requests, need to check for this condition.
     if(! [self viewClass:view matchesName:req.viewClass])
     {
         if(req.request == nil) {
